@@ -48,3 +48,7 @@ class Player:
             self.screen.blit(self.playerimg_left, (self.player_rect_x, self.player_rect_y))
         elif self.direction == RIGHT:
             self.screen.blit(self.playerimg_right, (self.player_rect_x, self.player_rect_y))
+
+    def animated_player(self):
+        '''Initializes animation'''
+        # not implemented yet
