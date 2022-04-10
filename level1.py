@@ -16,6 +16,11 @@ class Level1:
 
         self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
     
+        # Variables to make sure assets have the upper left corner of the background as a basis
+
+        self.placement_adj_x = self.bg.width//2 - self.bg.bg.get_rect().width//2
+        self.placement_adj_y = self.bg.height//2 - self.bg.bg.get_rect().height//2
+
     def backgroundlvl1_assets(self):
         '''Initializes lvl 1 map assets'''
 
@@ -25,5 +30,5 @@ class Level1:
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]
 
-        self.bg.screen.blit(self.portal, (1225+self.map_x, 985+self.map_y))
+        self.bg.screen.blit(self.portal, (self.placement_adj_x + 985 + self.map_x, self.placement_adj_y + 985 + self.map_y))
         
