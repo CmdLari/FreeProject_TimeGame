@@ -10,8 +10,6 @@ from background import Background
 from player import LEFT, RIGHT, UP, DOWN, Player
 from level1 import Level1
 
-# This is a change
-
 class Timegame:
     '''Manages the game'''
 
