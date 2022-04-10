@@ -24,8 +24,15 @@ class Background:
         
     def background(self):
         '''Blank Background to be replaced'''
-        self.bg_rect_x = (self.width//2 - self.bg.get_rect().width//2 +self.ix)
-        self.bg_rect_y = (self.height//2 - self.bg.get_rect().height//2 +self.iy)
+
+        # Movement Variables
+        player_state_file = open("playerstate.json")
+        json_data = json.load(player_state_file)
+        self.mov_x = json_data["mov_x"]
+        self.mov_y = json_data["mov_y"]
+
+        self.bg_rect_x = (self.width//2 - self.bg.get_rect().width//2 +self.mov_x)
+        self.bg_rect_y = (self.height//2 - self.bg.get_rect().height//2 +self.mov_y)
         self.bg_rect = (self.bg_rect_x, self.bg_rect_y)
         self.screen.blit(self.bg, self.bg_rect)
         
