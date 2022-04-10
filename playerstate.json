@@ -1,0 +1,10 @@
+{
+    "mov_x": -300,
+    "mov_y": -475,
+    "map_x": -300,
+    "map_y": -475,
+    "player_level": 1,
+    "player_sanity": 50,
+    "player_love": 0,
+    "player_rationality": 0
+}

@@ -9,6 +9,7 @@ from settings import Settings
 from background import Background
 from player import LEFT, RIGHT, UP, DOWN, Player
 from level1 import Level1
+from utils import Utils
 
 # This is a change
 
@@ -25,10 +26,20 @@ class Timegame:
         self.player = Player()
         self.lvl1 = Level1()
 
+        self.playerstats_file = "playerstate.json"
+
         # Initialize screen
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.width = self.screen.get_rect().width
         self.height = self.screen.get_rect().height
+
+        # Movement Variables
+        player_state_file = open("playerstate.json")
+        json_data = json.load(player_state_file)
+        self.mov_x = json_data["mov_x"]
+        self.mov_y = json_data["mov_y"]
+        self.map_x = json_data["map_x"]
+        self.map_y = json_data["map_y"]            
               
     def run_game(self):
         '''Main loop for the game'''
@@ -107,19 +118,38 @@ class Timegame:
             elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 self.player.direction = LEFT
                 if self.bg.bg_rect_x <= self.bg.screen.get_rect().x:
-                    self.bg.ix +=5
+                    self.mov_x += 5
+                    Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
+                    self.mov_x = Utils.read_from_playerstate("mov_x", self.playerstats_file)
+                    self.map_x = self.bg.bg.get_rect().x+self.mov_x
+                    Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)
+
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT: 
                 self.player.direction = RIGHT
                 if self.bg.bg_rect_x >= self.bg.screen.get_rect().x - self.bg.screen.get_rect().width*3:
-                    self.bg.ix -=5
+                    self.mov_x -= 5
+                    Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
+                    self.mov_x = Utils.read_from_playerstate("mov_x", self.playerstats_file)
+                    self.map_x = self.bg.bg.get_rect().x+self.mov_x
+                    Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)
+
             elif event.key == pygame.K_w or event.key == pygame.K_UP:
                 self.player.direction = UP
                 if self.bg.bg_rect_y <= self.bg.screen.get_rect().y:
-                    self.bg.iy +=5 
+                    self.mov_y += 5
+                    Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)
+                    self.mov_y = Utils.read_from_playerstate("mov_y", self.playerstats_file)
+                    self.map_y = self.bg.bg.get_rect().y+self.mov_y
+                    Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)
+
             elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 self.player.direction = DOWN
                 if self.bg.bg_rect_y >= self.bg.screen.get_rect().y - self.bg.screen.get_rect().height*3:
-                    self.bg.iy -=5
+                    self.mov_y -= 5
+                    Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)
+                    self.mov_y = Utils.read_from_playerstate("mov_y", self.playerstats_file)
+                    self.map_y = self.bg.bg.get_rect().y+self.mov_y
+                    Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)
 
             # Return to menu
             elif event.key == pygame.K_r:

@@ -1,4 +1,5 @@
 # Import Libraries
+import imp
 import pygame
 import json
 
@@ -11,11 +12,18 @@ class Level1:
     def __init__(self):
         self.bg = Background()
 
-        # Assets
+         # Assets
 
         self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
     
     def backgroundlvl1_assets(self):
         '''Initializes lvl 1 map assets'''
 
-        self.bg.screen.blit(self.portal, (0+self.bg.ix, 0+self.bg.iy))
+       # Movement Variables
+        player_state_file = open("playerstate.json")
+        json_data = json.load(player_state_file)
+        self.map_x = json_data["map_x"]
+        self.map_y = json_data["map_y"]
+
+        self.bg.screen.blit(self.portal, (1225+self.map_x, 985+self.map_y))
+        
