@@ -91,6 +91,11 @@ class Timegame:
                     if self.player.playerlvl ==1:
                         self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
                         pygame.mixer.Sound.play(self.lvl1sound, loops=-1)
+                elif self.cont_rect.collidepoint(pygame.mouse.get_pos()):
+                    self.game_run_active = True
+                    if self.player.playerlvl ==1:
+                        self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
+                        pygame.mixer.Sound.play(self.lvl1sound, loops=-1)                        
                 elif self.quit_rect.collidepoint(pygame.mouse.get_pos()):
                     sys.exit()
 
@@ -173,6 +178,7 @@ class Timegame:
         self.cont_button = pygame.image.load("_IMGS/continue.png")
         self.cont_rect_w = self.cont_button.get_rect().width
         self.cont_rect_h = self.cont_button.get_rect().height
+        self.cont_rect = pygame.Rect((self.bg.width//2-self.cont_rect_w//2, self.bg.height//2-self.cont_rect_h//2 - self.cont_rect_h//2),(self.cont_rect_w, self.cont_rect_h))
         self.bg.screen.blit(self.cont_button, (self.bg.width//2-self.cont_rect_w//2, self.bg.height//2-self.cont_rect_h//2))
 
         # New Game
