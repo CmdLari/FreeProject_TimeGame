@@ -85,17 +85,24 @@ class Timegame:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
+
+                # New Game
                 if self.ng_rect.collidepoint(pygame.mouse.get_pos()):
                     self.game_run_active = True
                     if self.player.playerlvl ==1:
                         self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
                         pygame.mixer.Sound.play(self.lvl1sound, loops=-1)
+                
+                # Continue
                 elif self.cont_rect.collidepoint(pygame.mouse.get_pos()):
                     self.game_run_active = True
                     if self.player.playerlvl ==1:
                         self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
                         pygame.mixer.Sound.play(self.lvl1sound, loops=-1)                        
+                
+                # Quit
                 elif self.quit_rect.collidepoint(pygame.mouse.get_pos()):
                     sys.exit()
 
@@ -119,7 +126,8 @@ class Timegame:
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
 
-            # Movement #5
+            # Movement 
+            # --Left
             elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 self.player.direction = LEFT
                 if self.bg.bg_rect_x <= self.bg.screen.get_rect().x:
@@ -128,7 +136,8 @@ class Timegame:
                     self.mov_x = Utils.read_from_playerstate("mov_x", self.playerstats_file)
                     self.map_x = self.bg.bg.get_rect().x+self.mov_x
                     Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)
-
+            
+            # --Right
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT: 
                 self.player.direction = RIGHT
                 if self.bg.bg_rect_x >= self.bg.screen.get_rect().x - self.bg.screen.get_rect().width*3:
@@ -138,6 +147,7 @@ class Timegame:
                     self.map_x = self.bg.bg.get_rect().x+self.mov_x
                     Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)
 
+            # --Up
             elif event.key == pygame.K_w or event.key == pygame.K_UP:
                 self.player.direction = UP
                 if self.bg.bg_rect_y <= self.bg.screen.get_rect().y:
@@ -146,7 +156,8 @@ class Timegame:
                     self.mov_y = Utils.read_from_playerstate("mov_y", self.playerstats_file)
                     self.map_y = self.bg.bg.get_rect().y+self.mov_y
                     Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)
-
+            
+            # --Down
             elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 self.player.direction = DOWN
                 if self.bg.bg_rect_y >= self.bg.screen.get_rect().y - self.bg.screen.get_rect().height*3:

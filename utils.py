@@ -2,6 +2,7 @@ import json
 
 
 class Utils:
+    '''Reads and writes to json-File'''
 
     @staticmethod
     def write_to_playerstate(json_key: str, value: int, json_path: str):
