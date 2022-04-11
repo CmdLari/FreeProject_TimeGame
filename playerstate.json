@@ -1,10 +1,11 @@
 {
-    "mov_x": 2832,
-    "mov_y": 1165,
-    "map_x": 2832,
-    "map_y": 1165,
+    "mov_x": 0,
+    "mov_y": 0,
+    "map_x": 0,
+    "map_y": 0,
     "player_level": 1,
     "player_sanity": 50,
     "player_love": 0,
-    "player_rationality": 0
+    "player_rationality": 0,
+    "player_health": 20
 }

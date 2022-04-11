@@ -40,6 +40,21 @@ class Timegame:
         self.mov_y = json_data["mov_y"]
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]            
+
+        # Player Stats
+        player_state_file = open("playerstate.json")
+        json_data = json.load(player_state_file)
+        
+        self.player_lvl = json_data["player_level"]
+        self.sanity = json_data["player_sanity"]
+        self.love = json_data["player_love"]
+        self.rationality = json_data["player_rationality"]
+        self.health = json_data["player_health"]
+
+        # Music
+        if self.player_lvl == 1:
+            self.ingame_music = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
+
               
     def run_game(self):
         '''Main loop for the game'''
@@ -90,17 +105,36 @@ class Timegame:
 
                 # New Game
                 if self.ng_rect.collidepoint(pygame.mouse.get_pos()):
+                    
+                    # Reset all stats
+                    self.player_lvl = 1
+                    Utils.write_to_playerstate("player_level", self.player_lvl, self.playerstats_file)
+                    self.sanity = 50
+                    Utils.write_to_playerstate("player_sanity", self.sanity, self.playerstats_file)
+                    self.love = 0
+                    Utils.write_to_playerstate("player_love", self.love, self.playerstats_file)
+                    self.rationality = 0
+                    Utils.write_to_playerstate("player_rationality", self.rationality, self.playerstats_file)
+                    self.health = 20
+                    Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+                    
+                    self.mov_x = 0
+                    Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
+                    self.mov_y = 0
+                    Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)                    
+                    self.map_x = 0
+                    Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)                    
+                    self.map_y = 0
+                    Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)     
+
                     self.game_run_active = True
-                    if self.player.playerlvl ==1:
-                        self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
-                        pygame.mixer.Sound.play(self.lvl1sound, loops=-1)
+                    pygame.mixer.Sound.play(self.ingame_music, loops=-1)                        
+
                 
                 # Continue
                 elif self.cont_rect.collidepoint(pygame.mouse.get_pos()):
                     self.game_run_active = True
-                    if self.player.playerlvl ==1:
-                        self.lvl1sound = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
-                        pygame.mixer.Sound.play(self.lvl1sound, loops=-1)                        
+                    pygame.mixer.Sound.play(self.ingame_music, loops=-1)                        
                 
                 # Quit
                 elif self.quit_rect.collidepoint(pygame.mouse.get_pos()):
@@ -127,6 +161,7 @@ class Timegame:
                 sys.exit()
 
             # Movement 
+            
             # --Left
             elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 self.player.direction = LEFT
@@ -170,7 +205,7 @@ class Timegame:
             # Return to menu
             elif event.key == pygame.K_r:
                 self.game_run_active = False
-                pygame.mixer.Sound.stop(self.lvl1sound)
+                pygame.mixer.Sound.stop(self.ingame_music)
                 self.menusound = pygame.mixer.Sound('_MUS/timegame_menu.mp3')
                 pygame.mixer.Sound.play(self.menusound, loops=-1)
 
@@ -213,14 +248,14 @@ class Timegame:
 
     def check_player_lvl(self):
         '''Checks for player level and sets map'''
-        if self.player.playerlvl == 1:
+        if self.player_lvl == 1:
             self.bglvl1 = pygame.image.load('_IMGS/_lvl1/map_lvl1.png')
             self.bg.bg = self.bglvl1
             pygame.mixer.Sound.stop(self.menusound)
 
     def draw_lvl(self):
         '''Initializes lvl assets'''
-        if self.player.playerlvl == 1:
+        if self.player_lvl == 1:
             self.lvl1.backgroundlvl1_assets()
 
 if __name__ == '__main__':
