@@ -85,7 +85,6 @@ class Timegame:
                 self.bg.background()
                 self.check_events()
                 self.draw_lvl()
-                self.lvl1_interactions()
                 self.drawplayer()
                 self.bg.screentext()
 
@@ -270,14 +269,6 @@ class Timegame:
             self.lvl1.backgroundlvl1_assets()
         elif self.player_lvl == 2:
             self.lvl2.backgroundlvl2_assets()
-
-    def lvl1_interactions(self):
-        '''Manages action on 1st lvl'''
-        if self.player_lvl == 1:
-            if self.lvl1.portal_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2):
-                self.player_lvl = 2
-                Utils.write_to_playerstate("player_level", self.player_lvl, self.playerstats_file)  
-                print("hi")      
 
 if __name__ == '__main__':
     # Make a game instance and run the game

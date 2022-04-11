@@ -15,6 +15,8 @@ class Level1:
         self.bg = Background()
         self.player = Player()
 
+        self.playerstats_file = "playerstate.json"
+
         # Movement Variables
         player_state_file = open("playerstate.json")
         json_data = json.load(player_state_file)
@@ -35,12 +37,6 @@ class Level1:
         self.rationality = json_data["player_rationality"]
         self.health = json_data["player_health"]
 
-        # Movement Variables
-        player_state_file = open("playerstate.json")
-        json_data = json.load(player_state_file)
-        self.map_x = json_data["map_x"]
-        self.map_y = json_data["map_y"]        
-
          # Assets
 
         self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
@@ -60,11 +56,16 @@ class Level1:
         self.map_y = json_data["map_y"]
 
         # Portal
-        self.bg.screen.blit(self.portal, (self.placement_adj_x + 3556 + self.map_x, self.placement_adj_y + 1941 + self.map_y))
-        self.portal_curr_rect = pygame.Rect(self.placement_adj_x + 3556 + self.map_x, self.placement_adj_y + 1941 + self.map_y, self.placement_adj_x + 985 + self.map_x + self.portal.get_rect().width, self.placement_adj_y + 985 + self.map_y + self.portal.get_rect().height)
-
-
-    
+        self.portal_x = self.placement_adj_x + 3556 + self.map_x
+        self.portal_y = self.placement_adj_y + 1941 + self.map_y
+        self.portal_width = self.placement_adj_x + 985 + self.map_x + self.portal.get_rect().width
+        self.portal_height = self.placement_adj_y + 985 + self.map_y + self.portal.get_rect().height
+        self.bg.screen.blit(self.portal, (self.portal_x, self.portal_y))
+        self.portal_curr_rect = pygame.Rect(self.portal_x, self.portal_y, self.portal_width , self.portal_height)
+        if self.portal_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2):
+            self.player_lvl = 2
+            Utils.write_to_playerstate("player_level", self.player_lvl,self.playerstats_file)  
+            print("hi stupid")   
 
             
 
