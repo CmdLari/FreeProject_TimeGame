@@ -58,9 +58,12 @@ class Level1:
         # Portal
         self.portal_x = self.placement_adj_x + 3556 + self.map_x
         self.portal_y = self.placement_adj_y + 1941 + self.map_y
-        self.portal_width = self.placement_adj_x + 985 + self.map_x + self.portal.get_rect().width
-        self.portal_height = self.placement_adj_y + 985 + self.map_y + self.portal.get_rect().height
+        self.portal_width = self.portal.get_rect().width
+        self.portal_height = self.portal.get_rect().height
+        
+        # Draw Portal to screen
         self.bg.screen.blit(self.portal, (self.portal_x, self.portal_y))
+
         self.portal_curr_rect = pygame.Rect(self.portal_x, self.portal_y, self.portal_width , self.portal_height)
         if self.portal_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2):
             self.player_lvl = 2

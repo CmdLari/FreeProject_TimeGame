@@ -258,9 +258,9 @@ class Timegame:
             self.bg.bg = self.bglvl1
             pygame.mixer.Sound.stop(self.menusound)
 
-        if self.player_lvl == 2:
-            self.bglvl1 = pygame.image.load('_IMGS/_lvl2/map_lvl2.png')
-            self.bg.bg = self.bglvl1
+        elif self.player_lvl == 2:
+            self.bglvl2 = pygame.image.load('_IMGS/_lvl2/map_lvl2.png')
+            self.bg.bg = self.bglvl2
             pygame.mixer.Sound.stop(self.menusound)
 
     def draw_lvl(self):
