@@ -127,12 +127,14 @@ class Timegame:
                     self.map_y = 0
                     Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)     
 
+                    pygame.mixer.Sound.stop(self.menusound)
                     self.game_run_active = True
                     pygame.mixer.Sound.play(self.ingame_music, loops=-1)                        
 
                 
                 # Continue
                 elif self.cont_rect.collidepoint(pygame.mouse.get_pos()):
+                    pygame.mixer.Sound.stop(self.menusound)                    
                     self.game_run_active = True
                     pygame.mixer.Sound.play(self.ingame_music, loops=-1)                        
                 
@@ -204,9 +206,8 @@ class Timegame:
 
             # Return to menu
             elif event.key == pygame.K_r:
-                self.game_run_active = False
                 pygame.mixer.Sound.stop(self.ingame_music)
-                self.menusound = pygame.mixer.Sound('_MUS/timegame_menu.mp3')
+                self.game_run_active = False
                 pygame.mixer.Sound.play(self.menusound, loops=-1)
 
             # Info-Screen
