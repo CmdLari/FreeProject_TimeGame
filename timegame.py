@@ -21,6 +21,8 @@ class Timegame:
         '''Initialize game, create resources'''
         pygame.init()
 
+        self.clock = pygame.time.Clock()
+
         # rename imported files
         self.settings = Settings()
         self.bg = Background()
@@ -73,6 +75,8 @@ class Timegame:
             pygame.mixer.Sound.play(self.menusound, loops=-1)
 
         while True:
+
+            self.clock.tick(60)
 
             self.bg.menu_screen()
             self.draw_menu_buttons()

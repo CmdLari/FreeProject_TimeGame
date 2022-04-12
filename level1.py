@@ -1,5 +1,6 @@
 # Import Libraries
 import imp
+from time import sleep
 import pygame
 import json
 
@@ -37,14 +38,23 @@ class Level1:
         self.rationality = json_data["player_rationality"]
         self.health = json_data["player_health"]
 
+        # Text Vars
+        self.textcolour = (223, 255, 182)
+        self.textfont = pygame.font.SysFont(None, 30)
+        self.textbg = (24, 8, 57)
+
          # Assets
 
         self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
+        self.ship = pygame.image.load('_IMGS/spaceship.png')
     
         # Variables to make sure assets have the upper left corner of the background as a basis
 
         self.placement_adj_x = self.bg.width//2 - self.bg.bg.get_rect().width//2
         self.placement_adj_y = self.bg.height//2 - self.bg.bg.get_rect().height//2
+
+        self.ship_state = True
+        self.ship_time = 600
 
     def backgroundlvl1_assets(self):
         '''Initializes lvl 1 map assets'''
@@ -55,20 +65,96 @@ class Level1:
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]
 
+        # Ship
+
+        self.ship_x = self.placement_adj_x + 3707 + self.map_x
+        self.ship_y = self.placement_adj_y + 1531 + self.map_y
+
+        self.bg.screen.blit(self.ship, (self.ship_x, self.ship_y))
+
+        self.ship_curr_rect = pygame.Rect(self.ship_x, self.ship_y, self.ship.get_rect().width, self.ship.get_rect().height)
+        if self.ship_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.ship_state == True and self.ship_time >=0:
+            self.ship_time -=1
+            self.ship_msg = " This is what little debris remains of some crashed ship. Did I arrive in this? Maybe there are some clues left nearby? I should take a look around! "
+            self.ship_msg_img = self.textfont.render(self.ship_msg, True, self.textcolour, self.textbg)
+            self.ship_msg_img_rect = self.ship_msg_img.get_rect()
+            self.ship_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height
+            self.bg.screen.blit(self.ship_msg_img, self.ship_msg_img_rect)
+
         # Portal
         self.portal_x = self.placement_adj_x + 3556 + self.map_x
         self.portal_y = self.placement_adj_y + 1941 + self.map_y
         self.portal_width = self.portal.get_rect().width
         self.portal_height = self.portal.get_rect().height
         
-        # Draw Portal to screen
         self.bg.screen.blit(self.portal, (self.portal_x, self.portal_y))
 
         self.portal_curr_rect = pygame.Rect(self.portal_x, self.portal_y, self.portal_width , self.portal_height)
         if self.portal_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2):
             self.player_lvl = 2
             Utils.write_to_playerstate("player_level", self.player_lvl,self.playerstats_file)  
-            print("hi stupid")   
+            print("hi stupid")
+
+        # Berries 1
+
+        # Berries 2
+
+        # Berries 3
+
+        # Berries 4
+
+        # Berries 5
+
+        # Berries 6
+
+        # Berries 7
+
+        # Berries 8
+
+        # Berries 9
+
+        # Berries 10
+
+        # Dino 1
+
+        # Dino 2
+
+        # Dino 3
+
+        # Dino 4
+
+        # Dino 5 
+
+        # Dino 6
+
+        # Dino 7
+
+        # Dino 8
+
+        # Dino 9
+
+        # Dino 10
+
+        # Memory 1
+
+        # Memory 2
+
+        # Memory 3
+
+        # Memory 4
+
+        # Memory 5
+
+        # Memory 6
+
+        # Memory 7
+
+        # Memory 8
+
+        # Memory 9
+
+        # Memory 10
+
 
             
 
