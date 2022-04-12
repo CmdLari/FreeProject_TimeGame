@@ -94,7 +94,7 @@ class Level1:
         self.ship_curr_rect = pygame.Rect(self.ship_x, self.ship_y, self.ship.get_rect().width, self.ship.get_rect().height)
         if self.ship_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.ship_state == True and self.ship_time >=0:
             self.ship_time -=1
-            self.ship_msg = " This is what little debris remains of some crashed ship. Did I arrive in this? Maybe there are some clues left nearby? I should take a look around! "
+            self.ship_msg = " This is what little debris remains of a crashed ship. Did I arrive in this? Maybe there are some clues left nearby? I should take a look around! "
             self.ship_msg_img = self.textfont.render(self.ship_msg, True, self.textcolour, self.textbg)
             self.ship_msg_img_rect = self.ship_msg_img.get_rect()
             self.ship_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height

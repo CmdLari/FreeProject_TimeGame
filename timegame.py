@@ -69,7 +69,8 @@ class Timegame:
 
         pygame.key.set_repeat(int(10))
 
-        self.game_run_active = False 
+        self.game_run_active = False
+        self.infoscreen = False
 
         if self.game_run_active == False:
             self.menusound = pygame.mixer.Sound('_MUS/timegame_menu.mp3')
@@ -78,7 +79,7 @@ class Timegame:
 
         while True:
 
-            self.clock.tick(60)
+            self.clock.tick(120)
 
             self.bg.menu_screen()
             self.draw_menu_buttons()
@@ -93,6 +94,7 @@ class Timegame:
                 self.draw_lvl()
                 self.drawplayer()
                 self.bg.screentext()
+                self.screeninfo()
 
             pygame.display.flip()
 
@@ -199,14 +201,24 @@ class Timegame:
                 self.game_run_active = False
                 pygame.mixer.Sound.play(self.menusound, loops=-1)
 
-            # Info-Screen
-            elif event.key == pygame.K_h:
-                self.bg.info_screen()
-
             # Journal
             elif event.key == pygame.K_j:
                 self.bg.journal()
 
+    def screeninfo(self):
+        '''Display control bindings'''
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            
+            elif event.type == pygame.KEYDOWN:
+                # Info-Screen
+                if event.key == pygame.K_h:
+                    self.infoscreen = True
+                elif event.key == pygame.K_g:
+                    self.infoscreen = False
+        if self.infoscreen == True:    
+            self.bg.info_screen()
 
     def draw_menu_buttons(self):
         '''Initialize menu buttons'''
