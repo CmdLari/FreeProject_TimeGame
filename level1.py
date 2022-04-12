@@ -16,8 +16,6 @@ class Level1:
         self.bg = Background()
         self.player = Player()
 
-        self.playerstats_file = "playerstate.json"
-
         # Movement Variables
         player_state_file = open("playerstate.json")
         json_data = json.load(player_state_file)
@@ -39,21 +37,42 @@ class Level1:
         self.health = json_data["player_health"]
 
         # Text Vars
-        self.textcolour = (223, 255, 182)
+        self.textcolour = (200, 252, 255)
         self.textfont = pygame.font.SysFont(None, 30)
-        self.textbg = (24, 8, 57)
+        self.textbg = (31, 13, 0)
 
          # Assets
 
         self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
         self.ship = pygame.image.load('_IMGS/spaceship.png')
+        self.ship_state = True
+
+        self.berries1 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries1b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries2 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries2b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries3 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries3b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries4 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries4b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries5 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries5b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries6 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries6b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries7 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries7b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries8 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries8b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries9 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries9b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+        self.berries10 = pygame.image.load('_IMGS/_Lvl1/berries.png')
+        self.berries10b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
     
         # Variables to make sure assets have the upper left corner of the background as a basis
 
         self.placement_adj_x = self.bg.width//2 - self.bg.bg.get_rect().width//2
         self.placement_adj_y = self.bg.height//2 - self.bg.bg.get_rect().height//2
 
-        self.ship_state = True
         self.ship_time = 600
 
     def backgroundlvl1_assets(self):
@@ -91,11 +110,27 @@ class Level1:
 
         self.portal_curr_rect = pygame.Rect(self.portal_x, self.portal_y, self.portal_width , self.portal_height)
         if self.portal_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2):
-            self.player_lvl = 2
+            self.player_lvl = 1 #2
             Utils.write_to_playerstate("player_level", self.player_lvl,self.playerstats_file)  
             print("hi stupid")
 
         # Berries 1
+        self.berries1_state = Utils.read_from_playerstate("berries1_state", self.playerstats_file)
+
+        self.berries1_x = self.placement_adj_x + 3556 + self.map_x #4517
+        self.berries1_y = self.placement_adj_y + 1941 + self.map_y #714
+
+        if self.berries1_state == 1:
+            self.bg.screen.blit(self.berries1, (self.berries1_x, self.berries1_y))
+        else:
+            self.bg.screen.blit(self.berries1b, (self.berries1_x, self.berries1_y))
+
+        self.berries1_curr_rect = pygame.Rect(self.berries1_x, self.berries1_y, self.berries1.get_rect().width, self.berries1.get_rect().height)
+        if self.berries1_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries1_state == 1:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries1_state = 2
+            Utils.write_to_playerstate("berries1_state", self.berries1_state, self.playerstats_file)
 
         # Berries 2
 

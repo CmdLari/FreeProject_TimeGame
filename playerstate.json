@@ -1,11 +1,21 @@
 {
     "mov_x": 0,
-    "mov_y": 420,
+    "mov_y": 495,
     "map_x": 0,
-    "map_y": 420,
+    "map_y": 495,
     "player_level": 1,
     "player_sanity": 50,
     "player_love": 0,
     "player_rationality": 0,
-    "player_health": 20
+    "player_health": 20,
+    "berries1_state": 1,
+    "berries2_state": 1,
+    "berries3_state": 1,
+    "berries4_state": 1,
+    "berries5_state": 1,
+    "berries6_state": 1,
+    "berries7_state": 1,
+    "berries8_state": 1,
+    "berries9_state": 1,
+    "berries10_state": 1
 }

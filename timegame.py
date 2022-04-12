@@ -11,6 +11,7 @@ from player import LEFT, RIGHT, UP, DOWN, Player
 from level1 import Level1
 from level2 import Level2
 from utils import Utils
+from new_game import NewGame
 
 # This is a change
 
@@ -29,6 +30,7 @@ class Timegame:
         self.player = Player()
         self.lvl1 = Level1()
         self.lvl2 = Level2()
+        self.new_game = NewGame()
 
         self.playerstats_file = "playerstate.json"
 
@@ -112,29 +114,8 @@ class Timegame:
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
                 # New Game
-                if self.ng_rect.collidepoint(pygame.mouse.get_pos()):
-                    
-                    # Reset all stats
-                    self.player_lvl = 1
-                    Utils.write_to_playerstate("player_level", self.player_lvl, self.playerstats_file)
-                    self.sanity = 50
-                    Utils.write_to_playerstate("player_sanity", self.sanity, self.playerstats_file)
-                    self.love = 0
-                    Utils.write_to_playerstate("player_love", self.love, self.playerstats_file)
-                    self.rationality = 0
-                    Utils.write_to_playerstate("player_rationality", self.rationality, self.playerstats_file)
-                    self.health = 20
-                    Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
-                    
-                    self.mov_x = 0
-                    Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
-                    self.mov_y = 0
-                    Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)                    
-                    self.map_x = 0
-                    Utils.write_to_playerstate("map_x", self.map_x, self.playerstats_file)                    
-                    self.map_y = 0
-                    Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)     
-
+                if self.ng_rect.collidepoint(pygame.mouse.get_pos()):      
+                    self.new_game.restart()         
                     pygame.mixer.Sound.stop(self.menusound)
                     self.game_run_active = True
                     pygame.mixer.Sound.play(self.ingame_music, loops=-1)                        
