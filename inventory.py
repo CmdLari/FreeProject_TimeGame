@@ -89,7 +89,6 @@ class Inventory:
         self.bg.screen.blit(self.inv_inf_msg_img, self.inv_inf_msg_img_rect)
 
         print(self.inv_msg)
-
         print(self.invpos)
-
+        print(self.inv_inf_msg)
 
