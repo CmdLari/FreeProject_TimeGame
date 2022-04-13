@@ -75,25 +75,25 @@ class NewGame:
         Utils.write_to_playerstate("map_y", self.map_y, self.playerstats_file)     
 
         # Inventory
-        self.inv1 = " "
+        self.inv1 = "-"
         Utils.write_to_playerstate("inv_1", self.inv1, self.playerstats_file)             
-        self.inv2 = " "
+        self.inv2 = "-"
         Utils.write_to_playerstate("inv_2", self.inv2, self.playerstats_file)     
-        self.inv3 = " "
+        self.inv3 = "-"
         Utils.write_to_playerstate("inv_3", self.inv3, self.playerstats_file)     
-        self.inv4 = " "
+        self.inv4 = "-"
         Utils.write_to_playerstate("inv_4", self.inv4, self.playerstats_file)     
-        self.inv5 = " "
+        self.inv5 = "-"
         Utils.write_to_playerstate("inv_5", self.inv5, self.playerstats_file)     
-        self.inv6 = " "
+        self.inv6 = "-"
         Utils.write_to_playerstate("inv_6", self.inv6, self.playerstats_file)     
-        self.inv7 = " "
+        self.inv7 = "-"
         Utils.write_to_playerstate("inv_7", self.inv7, self.playerstats_file)     
-        self.inv8 = " "
+        self.inv8 = "-"
         Utils.write_to_playerstate("inv_8", self.inv8, self.playerstats_file)     
-        self.inv9 = " "
+        self.inv9 = "-"
         Utils.write_to_playerstate("inv_9", self.inv9, self.playerstats_file)     
-        self.inv9 = " "
+        self.inv10 = "-"
         Utils.write_to_playerstate("inv_10", self.inv10, self.playerstats_file)     
 
         # Lvl 1

@@ -134,8 +134,8 @@ class Level1:
         # Berries 1
         self.berries1_state = Utils.read_from_playerstate("berries1_state", self.playerstats_file)
 
-        self.berries1_x = self.placement_adj_x + 3556 + self.map_x #4517
-        self.berries1_y = self.placement_adj_y + 1941 + self.map_y #714
+        self.berries1_x = self.placement_adj_x + 2602 + self.map_x
+        self.berries1_y = self.placement_adj_y + 1477 + self.map_y 
 
         if self.berries1_state == 1:
             self.bg.screen.blit(self.berries1, (self.berries1_x, self.berries1_y))
@@ -150,22 +150,166 @@ class Level1:
             Utils.write_to_playerstate("berries1_state", self.berries1_state, self.playerstats_file)
 
         # Berries 2
+        self.berries2_state = Utils.read_from_playerstate("berries2_state", self.playerstats_file)
+
+        self.berries2_x = self.placement_adj_x + 4517 + self.map_x
+        self.berries2_y = self.placement_adj_y + 714 + self.map_y 
+
+        if self.berries2_state == 1:
+            self.bg.screen.blit(self.berries2, (self.berries2_x, self.berries2_y))
+        else:
+            self.bg.screen.blit(self.berries2b, (self.berries2_x, self.berries2_y))
+
+        self.berries2_curr_rect = pygame.Rect(self.berries2_x, self.berries2_y, self.berries2.get_rect().width, self.berries2.get_rect().height)
+        if self.berries2_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries2_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries2_state = 2
+            Utils.write_to_playerstate("berries2_state", self.berries2_state, self.playerstats_file)
 
         # Berries 3
+        self.berries3_state = Utils.read_from_playerstate("berries3_state", self.playerstats_file)
+
+        self.berries3_x = self.placement_adj_x + 4921 + self.map_x
+        self.berries3_y = self.placement_adj_y + 2860 + self.map_y 
+
+        if self.berries3_state == 1:
+            self.bg.screen.blit(self.berries3, (self.berries3_x, self.berries3_y))
+        else:
+            self.bg.screen.blit(self.berries3b, (self.berries3_x, self.berries3_y))
+
+        self.berries3_curr_rect = pygame.Rect(self.berries3_x, self.berries3_y, self.berries3.get_rect().width, self.berries3.get_rect().height)
+        if self.berries3_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries3_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries3_state = 2
+            Utils.write_to_playerstate("berries3_state", self.berries3_state, self.playerstats_file)        
 
         # Berries 4
+        self.berries4_state = Utils.read_from_playerstate("berries4_state", self.playerstats_file)
+
+        self.berries4_x = self.placement_adj_x + 6652 + self.map_x
+        self.berries4_y = self.placement_adj_y + 2099 + self.map_y 
+
+        if self.berries4_state == 1:
+            self.bg.screen.blit(self.berries4, (self.berries4_x, self.berries4_y))
+        else:
+            self.bg.screen.blit(self.berries4b, (self.berries4_x, self.berries4_y))
+
+        self.berries4_curr_rect = pygame.Rect(self.berries4_x, self.berries4_y, self.berries4.get_rect().width, self.berries4.get_rect().height)
+        if self.berries4_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries4_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries4_state = 2
+            Utils.write_to_playerstate("berries4_state", self.berries4_state, self.playerstats_file)        
 
         # Berries 5
+        self.berries5_state = Utils.read_from_playerstate("berries5_state", self.playerstats_file)
+
+        self.berries5_x = self.placement_adj_x + 1792 + self.map_x
+        self.berries5_y = self.placement_adj_y + 2408 + self.map_y 
+
+        if self.berries5_state == 1:
+            self.bg.screen.blit(self.berries5, (self.berries5_x, self.berries5_y))
+        else:
+            self.bg.screen.blit(self.berries5b, (self.berries5_x, self.berries5_y))
+
+        self.berries5_curr_rect = pygame.Rect(self.berries5_x, self.berries5_y, self.berries5.get_rect().width, self.berries5.get_rect().height)
+        if self.berries5_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries5_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries5_state = 2
+            Utils.write_to_playerstate("berries5_state", self.berries5_state, self.playerstats_file)
 
         # Berries 6
+        self.berries6_state = Utils.read_from_playerstate("berries6_state", self.playerstats_file)
+
+        self.berries6_x = self.placement_adj_x + 1488 + self.map_x
+        self.berries6_y = self.placement_adj_y + 963 + self.map_y 
+
+        if self.berries6_state == 1:
+            self.bg.screen.blit(self.berries6, (self.berries6_x, self.berries6_y))
+        else:
+            self.bg.screen.blit(self.berries6b, (self.berries6_x, self.berries6_y))
+
+        self.berries6_curr_rect = pygame.Rect(self.berries6_x, self.berries6_y, self.berries6.get_rect().width, self.berries6.get_rect().height)
+        if self.berries6_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries6_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries6_state = 2
+            Utils.write_to_playerstate("berries6_state", self.berries6_state, self.playerstats_file)        
 
         # Berries 7
+        self.berries7_state = Utils.read_from_playerstate("berries7_state", self.playerstats_file)
+
+        self.berries7_x = self.placement_adj_x + 3181 + self.map_x
+        self.berries7_y = self.placement_adj_y + 3607 + self.map_y 
+
+        if self.berries7_state == 1:
+            self.bg.screen.blit(self.berries7, (self.berries7_x, self.berries7_y))
+        else:
+            self.bg.screen.blit(self.berries7b, (self.berries7_x, self.berries7_y))
+
+        self.berries7_curr_rect = pygame.Rect(self.berries7_x, self.berries7_y, self.berries7.get_rect().width, self.berries7.get_rect().height)
+        if self.berries7_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries7_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries7_state = 2
+            Utils.write_to_playerstate("berries7_state", self.berries7_state, self.playerstats_file)        
 
         # Berries 8
+        self.berries8_state = Utils.read_from_playerstate("berries8_state", self.playerstats_file)
+
+        self.berries8_x = self.placement_adj_x + 5836 + self.map_x
+        self.berries8_y = self.placement_adj_y + 3545 + self.map_y 
+
+        if self.berries8_state == 1:
+            self.bg.screen.blit(self.berries8, (self.berries8_x, self.berries8_y))
+        else:
+            self.bg.screen.blit(self.berries8b, (self.berries8_x, self.berries8_y))
+
+        self.berries8_curr_rect = pygame.Rect(self.berries8_x, self.berries8_y, self.berries8.get_rect().width, self.berries8.get_rect().height)
+        if self.berries8_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries8_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries8_state = 2
+            Utils.write_to_playerstate("berries8_state", self.berries8_state, self.playerstats_file)        
 
         # Berries 9
+        self.berries9_state = Utils.read_from_playerstate("berries9_state", self.playerstats_file)
+
+        self.berries9_x = self.placement_adj_x + 5392 + self.map_x
+        self.berries9_y = self.placement_adj_y + 1809 + self.map_y 
+
+        if self.berries9_state == 1:
+            self.bg.screen.blit(self.berries9, (self.berries9_x, self.berries9_y))
+        else:
+            self.bg.screen.blit(self.berries9b, (self.berries9_x, self.berries9_y))
+
+        self.berries9_curr_rect = pygame.Rect(self.berries9_x, self.berries9_y, self.berries9.get_rect().width, self.berries9.get_rect().height)
+        if self.berries9_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries9_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries9_state = 2
+            Utils.write_to_playerstate("berries9_state", self.berries9_state, self.playerstats_file)
 
         # Berries 10
+        self.berries10_state = Utils.read_from_playerstate("berries10_state", self.playerstats_file)
+
+        self.berries10_x = self.placement_adj_x + 2872 + self.map_x
+        self.berries10_y = self.placement_adj_y + 2737 + self.map_y 
+
+        if self.berries10_state == 1:
+            self.bg.screen.blit(self.berries10, (self.berries10_x, self.berries10_y))
+        else:
+            self.bg.screen.blit(self.berries10b, (self.berries10_x, self.berries10_y))
+
+        self.berries10_curr_rect = pygame.Rect(self.berries10_x, self.berries10_y, self.berries10.get_rect().width, self.berries10.get_rect().height)
+        if self.berries10_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries10_state == 1 and self.analyzer_state == 2:
+            self.health += 5
+            Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
+            self.berries10_state = 2
+            Utils.write_to_playerstate("berries10_state", self.berries10_state, self.playerstats_file)
 
         # Dino 1
 
@@ -199,35 +343,35 @@ class Level1:
         self.analyzer_curr_rect = pygame.Rect(self.analyzer_x, self.analyzer_y, self.analyzer.get_rect().width, self.analyzer.get_rect().height)
         if self.analyzer_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.analyzer_state == 1:
             if self.inventorylist_length <= self.maxinv:
-                if self.inv1 == " ":
-                    self.inv1 = " Analyzer "
+                if self.inv1 == "-":
+                    self.inv1 = "Analyzer"
                     Utils.write_to_playerstate("inv_1", self.inv1, self.playerstats_file)                    
-                elif self.inv2 == " ":
-                    self.inv2 = " Analyzer "
+                elif self.inv2 == "-":
+                    self.inv2 = "Analyzer"
                     Utils.write_to_playerstate("inv_2", self.inv2, self.playerstats_file)                                        
-                elif self.inv3 == " ":
-                    self.inv3 = " Analyzer "
+                elif self.inv3 == "-":
+                    self.inv3 = "Analyzer"
                     Utils.write_to_playerstate("inv_3", self.inv3, self.playerstats_file)                                        
-                elif self.inv4 == " ":
-                    self.inv4 = " Analyzer "
+                elif self.inv4 == "-":
+                    self.inv4 = "Analyzer"
                     Utils.write_to_playerstate("inv_4", self.inv4, self.playerstats_file)                                        
-                elif self.inv5 == " ":
-                    self.inv5 = " Analyzer "
+                elif self.inv5 == "-":
+                    self.inv5 = "Analyzer"
                     Utils.write_to_playerstate("inv_5", self.inv5, self.playerstats_file)                                        
-                elif self.inv6 == " ":
-                    self.inv6 = " Analyzer "
+                elif self.inv6 == "-":
+                    self.inv6 = "Analyzer"
                     Utils.write_to_playerstate("inv_6", self.inv6, self.playerstats_file)                                        
-                elif self.inv7 == " ":
-                    self.inv7 = " Analyzer "
+                elif self.inv7 == "-":
+                    self.inv7 = "Analyzer"
                     Utils.write_to_playerstate("inv_7", self.inv7, self.playerstats_file)                                        
-                elif self.inv8 == " ":
-                    self.inv8 = " Analyzer "
+                elif self.inv8 == "-":
+                    self.inv8 = "Analyzer"
                     Utils.write_to_playerstate("inv_8", self.inv8, self.playerstats_file)                                        
-                elif self.inv9 == " ":
-                    self.inv9 = " Analyzer "
+                elif self.inv9 == "-":
+                    self.inv9 = "Analyzer"
                     Utils.write_to_playerstate("inv_9", self.inv9, self.playerstats_file)                                        
-                elif self.inv10 == " ":
-                    self.inv10 = " Analyzer "
+                elif self.inv10 == "-":
+                    self.inv10 = "Analyzer"
                     Utils.write_to_playerstate("inv_10", self.inv10, self.playerstats_file)
                 self.berries1_state = 1                                     
                 Utils.write_to_playerstate("berries1_state", self.berries1_state, self.playerstats_file)
