@@ -1,4 +1,5 @@
 # Import Libraries
+import imp
 import pygame
 import json
 import sys
@@ -12,6 +13,7 @@ from level1 import Level1
 from level2 import Level2
 from utils import Utils
 from new_game import NewGame
+from inventory import Inventory
 
 # This is a change
 
@@ -31,6 +33,7 @@ class Timegame:
         self.lvl1 = Level1()
         self.lvl2 = Level2()
         self.new_game = NewGame()
+        self.inventory = Inventory()
 
         self.playerstats_file = "playerstate.json"
 
@@ -95,6 +98,7 @@ class Timegame:
                 self.drawplayer()
                 self.bg.screentext()
                 self.screeninfo()
+                self.inventory.inventorytext()
 
             pygame.display.flip()
 

@@ -8,6 +8,7 @@ import json
 from background import Background
 from player import Player
 from utils import Utils
+from inventory import Inventory
 
 class Level1:
     '''Manages the 1st level'''
@@ -15,6 +16,7 @@ class Level1:
     def __init__(self):
         self.bg = Background()
         self.player = Player()
+        self.inventory = Inventory()
 
         # Movement Variables
         player_state_file = open("playerstate.json")
@@ -23,13 +25,26 @@ class Level1:
         self.mov_y = json_data["mov_y"]
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]            
+      
+        # Inventory
+        self.inv1 = json_data["inv_1"]
+        self.inv2 = json_data["inv_2"]
+        self.inv3 = json_data["inv_3"]
+        self.inv4 = json_data["inv_4"]
+        self.inv5 = json_data["inv_5"]
+        self.inv6 = json_data["inv_6"]
+        self.inv7 = json_data["inv_7"]
+        self.inv8 = json_data["inv_8"]
+        self.inv9 = json_data["inv_9"]
+        self.inv10 = json_data["inv_10"]
+
+        self.inventorylist = [self.inv1, self.inv2, self.inv3, self.inv4, self.inv5, self.inv6, self.inv7, self.inv8, self.inv9, self.inv10]
+        self.inventorylist_length = len(self.inventorylist)
+        self.maxinv = 10
 
         # Player Stats
         self.playerstats_file = "playerstate.json"
-        
-        player_state_file = open("playerstate.json")
-        json_data = json.load(player_state_file)
-        
+
         self.player_lvl = json_data["player_level"]
         self.sanity = json_data["player_sanity"]
         self.love = json_data["player_love"]
@@ -67,6 +82,8 @@ class Level1:
         self.berries9b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
         self.berries10 = pygame.image.load('_IMGS/_Lvl1/berries.png')
         self.berries10b = pygame.image.load('_IMGS/_Lvl1/berries_b.png')
+
+        self.analyzer = pygame.image.load('_IMGS/_Lvl1/Item_Analyzer.png')
     
         # Variables to make sure assets have the upper left corner of the background as a basis
 
@@ -126,7 +143,7 @@ class Level1:
             self.bg.screen.blit(self.berries1b, (self.berries1_x, self.berries1_y))
 
         self.berries1_curr_rect = pygame.Rect(self.berries1_x, self.berries1_y, self.berries1.get_rect().width, self.berries1.get_rect().height)
-        if self.berries1_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries1_state == 1:
+        if self.berries1_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.berries1_state == 1 and self.analyzer_state == 2:
             self.health += 5
             Utils.write_to_playerstate("player_health", self.health, self.playerstats_file)
             self.berries1_state = 2
@@ -170,7 +187,70 @@ class Level1:
 
         # Dino 10
 
-        # Memory 1
+        # Item 1: Analyzer
+        self.analyzer_state = Utils.read_from_playerstate("item_analyzer", self.playerstats_file)
+
+        self.analyzer_x = self.placement_adj_x + 3349 + self.map_x
+        self.analyzer_y = self.placement_adj_y + 1383 + self.map_y
+
+        if self.analyzer_state == 1:
+            self.bg.screen.blit(self.analyzer, (self.analyzer_x, self.analyzer_y))
+
+        self.analyzer_curr_rect = pygame.Rect(self.analyzer_x, self.analyzer_y, self.analyzer.get_rect().width, self.analyzer.get_rect().height)
+        if self.analyzer_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.analyzer_state == 1:
+            if self.inventorylist_length <= self.maxinv:
+                if self.inv1 == " ":
+                    self.inv1 = " Analyzer "
+                    Utils.write_to_playerstate("inv_1", self.inv1, self.playerstats_file)                    
+                elif self.inv2 == " ":
+                    self.inv2 = " Analyzer "
+                    Utils.write_to_playerstate("inv_2", self.inv2, self.playerstats_file)                                        
+                elif self.inv3 == " ":
+                    self.inv3 = " Analyzer "
+                    Utils.write_to_playerstate("inv_3", self.inv3, self.playerstats_file)                                        
+                elif self.inv4 == " ":
+                    self.inv4 = " Analyzer "
+                    Utils.write_to_playerstate("inv_4", self.inv4, self.playerstats_file)                                        
+                elif self.inv5 == " ":
+                    self.inv5 = " Analyzer "
+                    Utils.write_to_playerstate("inv_5", self.inv5, self.playerstats_file)                                        
+                elif self.inv6 == " ":
+                    self.inv6 = " Analyzer "
+                    Utils.write_to_playerstate("inv_6", self.inv6, self.playerstats_file)                                        
+                elif self.inv7 == " ":
+                    self.inv7 = " Analyzer "
+                    Utils.write_to_playerstate("inv_7", self.inv7, self.playerstats_file)                                        
+                elif self.inv8 == " ":
+                    self.inv8 = " Analyzer "
+                    Utils.write_to_playerstate("inv_8", self.inv8, self.playerstats_file)                                        
+                elif self.inv9 == " ":
+                    self.inv9 = " Analyzer "
+                    Utils.write_to_playerstate("inv_9", self.inv9, self.playerstats_file)                                        
+                elif self.inv10 == " ":
+                    self.inv10 = " Analyzer "
+                    Utils.write_to_playerstate("inv_10", self.inv10, self.playerstats_file)
+                self.berries1_state = 1                                     
+                Utils.write_to_playerstate("berries1_state", self.berries1_state, self.playerstats_file)
+                self.berries2_state = 1                                     
+                Utils.write_to_playerstate("berries2_state", self.berries2_state, self.playerstats_file)
+                self.berries3_state = 1                                     
+                Utils.write_to_playerstate("berries3_state", self.berries3_state, self.playerstats_file)
+                self.berries4_state = 1                                     
+                Utils.write_to_playerstate("berries4_state", self.berries4_state, self.playerstats_file)
+                self.berries5_state = 1                                     
+                Utils.write_to_playerstate("berries5_state", self.berries5_state, self.playerstats_file)
+                self.berries6_state = 1                                     
+                Utils.write_to_playerstate("berries6_state", self.berries6_state, self.playerstats_file)
+                self.berries7_state = 1                                     
+                Utils.write_to_playerstate("berries7_state", self.berries7_state, self.playerstats_file)
+                self.berries8_state = 1                                     
+                Utils.write_to_playerstate("berries8_state", self.berries8_state, self.playerstats_file)
+                self.berries9_state = 1                                     
+                Utils.write_to_playerstate("berries9_state", self.berries9_state, self.playerstats_file)
+                self.berries10_state = 1                                     
+                Utils.write_to_playerstate("berries10_state", self.berries10_state, self.playerstats_file)
+                self.analyzer_state = 2
+                Utils.write_to_playerstate("item_analyzer", self.analyzer_state, self.playerstats_file)
 
         # Memory 2
 
