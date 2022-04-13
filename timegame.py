@@ -147,6 +147,7 @@ class Timegame:
 
     def check_keydown_events(self, event):
         '''Respond to keypresses'''
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -208,6 +209,38 @@ class Timegame:
             # Journal
             elif event.key == pygame.K_j:
                 self.bg.journal()
+
+            # Inventory Info
+            elif event.key == pygame.K_0:
+                self.inventory.invpos_key = 0
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_1:
+                self.inventory.invpos_key = 1
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_2:
+                self.inventory.invpos_key = 2
+                self.inventory.inventory_msg()             
+            elif event.key == pygame.K_3:
+                self.inventory.invpos_key = 3
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_4:
+                self.inventory.invpos_key = 4
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_5:
+                self.inventory.invpos_key = 5
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_6:
+                self.inventory.invpos_key = 6
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_7:
+                self.inventory.invpos_key = 7
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_8:
+                self.inventory.invpos_key = 8
+                self.inventory.inventory_msg()
+            elif event.key == pygame.K_9:
+                self.inventory.invpos_key = 9
+                self.inventory.inventory_msg()
 
     def screeninfo(self):
         '''Display control bindings'''

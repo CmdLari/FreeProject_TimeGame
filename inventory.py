@@ -39,8 +39,8 @@ class Inventory:
         self.textfont = pygame.font.SysFont(None, 20)
         self.textbg = (31, 13, 0)
 
-    def add_item_to_inv(self):
-        '''Adds item to inventory'''
+        # Inventory msg
+        self.invpos_key = 0
 
     def inventorytext(self):
         '''Blits inventory to screen'''
@@ -68,4 +68,28 @@ class Inventory:
             self.kickmsg_img_rect = self.kickmsg_img.get_rect()
             self.kickmsg_img_rect.center = self.bg.screen.get_rect().center
             self.bg.screen.blit(self.kickmsg_img, self.kickmsg_img_rect)
+
+    def inventory_msg(self):
+        '''Draws info about Inventory to screen'''
+        self.invpos = int(self.invpos_key)
+        self.inv_msg = self.inventorylist[self.invpos]
+        self.inv_msg_img = self.textfont.render(self.inv_msg, True, self.textcolour, self.textbg)
+        self.inv_msg_img_rect = self.inv_msg_img.get_rect()
+        self.inv_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height        
+
+        self.inv_inf_msg = " There is nothing in your inventory "
+        self.inv_inf_msg_img = self.textfont.render(self.inv_inf_msg, True, self.textcolour, self.textbg)
+        self.inv_inf_msg_img_rect = self.inv_inf_msg_img.get_rect()
+        self.inv_inf_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height        
+
+        if self.inventorylist[self.invpos] == "Analyzer":
+            self.inv_inf_msg = "This will help you determine if things around you are poisonous or not"
+
+        self.bg.screen.blit(self.inv_msg_img, self.inv_msg_img_rect)
+        self.bg.screen.blit(self.inv_inf_msg_img, self.inv_inf_msg_img_rect)
+
+        print(self.inv_msg)
+
+        print(self.invpos)
+
 

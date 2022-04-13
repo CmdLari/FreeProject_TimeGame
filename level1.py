@@ -396,6 +396,13 @@ class Level1:
                 self.analyzer_state = 2
                 Utils.write_to_playerstate("item_analyzer", self.analyzer_state, self.playerstats_file)
 
+                # Info-Msg
+                self.anal_msg = " This is what little debris remains of a crashed ship. Did I arrive in this? Maybe there are some clues left nearby? I should take a look around! "
+                self.anal_msg_img = self.textfont.render(self.anal_msg, True, self.textcolour, self.textbg)
+                self.anal_msg_img_rect = self.anal_msg_img.get_rect()
+                self.anal_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height
+                self.bg.screen.blit(self.anal_msg_img, self.anal_msg_img_rect)
+
         # Memory 2
 
         # Memory 3
