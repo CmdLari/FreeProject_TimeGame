@@ -36,7 +36,7 @@ class Inventory:
 
         # Text Vars
         self.textcolour = (200, 252, 255)
-        self.textfont = pygame.font.SysFont(None, 20)
+        self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 15)
         self.textbg = (31, 13, 0)
 
         # Inventory msg
