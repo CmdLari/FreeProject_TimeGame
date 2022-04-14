@@ -4,7 +4,7 @@ import pygame
 import json
 
 # Import own files
-from background import Background
+from vis_background import Background
 
 class Level2:
     '''Manages the 1st level'''
@@ -25,7 +25,7 @@ class Level2:
         '''Initializes lvl 1 map assets'''
 
        # Movement Variables
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]
