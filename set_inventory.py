@@ -35,11 +35,11 @@ class Inventory:
         self.inventorylist = [self.inv1, self.inv2, self.inv3, self.inv4, self.inv5, self.inv6, self.inv7, self.inv8, self.inv9, self.inv10]
 
         # Text Vars
-        self.textcolour = (200, 252, 255)
+        self.textcolour = (0, 255, 240)
         self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 15)
         self.textfont_inv = pygame.font.Font("0-font_press_start2p.ttf", 10)
         self.textfont_invinf = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
-        self.textbg = (31, 13, 0)
+        self.textbg = (20, 0, 40)
 
         # Inventory msg
         self.invpos_key = 0

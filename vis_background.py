@@ -18,12 +18,12 @@ class Background:
         self.bg = pygame.image.load('_IMGS/map_blank.png')
 
         # Text Vars
-        self.textcolour = (200, 252, 255)
+        self.textcolour = (0, 255, 240)
         self.textcolour_health = (255, 15, 111)
         self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 10)
         self.textfont_health = pygame.font.Font("0-font_press_start2p.ttf", 20)
         self.textfont_copy = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
-        self.textbg = (31, 13, 0)
+        self.textbg = (20, 0, 40)
         
     def background(self):
         '''Blank Background to be replaced'''
