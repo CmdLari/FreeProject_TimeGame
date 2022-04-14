@@ -53,7 +53,7 @@ class Level1:
 
         # Text Vars
         self.textcolour = (200, 252, 255)
-        self.textfont = pygame.font.SysFont(None, 30)
+        self.textfont = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
         self.textbg = (31, 13, 0)
 
          # Assets
@@ -111,11 +111,23 @@ class Level1:
         self.ship_curr_rect = pygame.Rect(self.ship_x, self.ship_y, self.ship.get_rect().width, self.ship.get_rect().height)
         if self.ship_curr_rect.collidepoint(self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2) and self.ship_state == True and self.ship_time >=0:
             self.ship_time -=1
-            self.ship_msg = " This is what little debris remains of a crashed ship. Did I arrive in this? Maybe there are some clues left nearby? I should take a look around! "
-            self.ship_msg_img = self.textfont.render(self.ship_msg, True, self.textcolour, self.textbg)
-            self.ship_msg_img_rect = self.ship_msg_img.get_rect()
-            self.ship_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height
-            self.bg.screen.blit(self.ship_msg_img, self.ship_msg_img_rect)
+            self.ship_msg1 = " This is what little debris remains of a crashed ship. "
+            self.ship_msg1_img = self.textfont.render(self.ship_msg1, True, self.textcolour, self.textbg)
+            self.ship_msg1_img_rect = self.ship_msg1_img.get_rect()
+            self.ship_msg1_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height
+            self.bg.screen.blit(self.ship_msg1_img, self.ship_msg1_img_rect)
+
+            self.ship_msg2 = " Did I arrive in this? Maybe there are some clues left nearby? "
+            self.ship_msg2_img = self.textfont.render(self.ship_msg2, True, self.textcolour, self.textbg)
+            self.ship_msg2_img_rect = self.ship_msg2_img.get_rect()
+            self.ship_msg2_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height + self.ship_msg2_img_rect.height + 10
+            self.bg.screen.blit(self.ship_msg2_img, self.ship_msg2_img_rect)
+
+            self.ship_msg3 = " I should take a look around! "
+            self.ship_msg3_img = self.textfont.render(self.ship_msg3, True, self.textcolour, self.textbg)
+            self.ship_msg3_img_rect = self.ship_msg3_img.get_rect()
+            self.ship_msg3_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height/2+self.player.playerimg_up.get_rect().height + self.ship_msg3_img_rect.height*2 + 20
+            self.bg.screen.blit(self.ship_msg3_img, self.ship_msg3_img_rect)
 
         # Portal
         self.portal_x = self.placement_adj_x + 3556 + self.map_x
