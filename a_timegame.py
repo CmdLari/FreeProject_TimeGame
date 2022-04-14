@@ -15,8 +15,6 @@ from ut_new_game import NewGame
 from set_inventory import Inventory
 from vis_screeninfo import Screeninfo
 
-# This is a change
-
 class Timegame:
     '''Manages the game'''
 
@@ -65,12 +63,11 @@ class Timegame:
             self.ingame_music = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
         if self.player_lvl == 2:
             self.ingame_music = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
-
               
     def run_game(self):
         '''Main loop for the game'''
 
-        pygame.key.set_repeat(int(10))
+        pygame.key.set_repeat(int(5))
 
         self.game_run_active = False
         self.infoscreen = False
@@ -97,7 +94,6 @@ class Timegame:
                 self.draw_lvl()
                 self.drawplayer()
                 self.screen_info.screentext()
-                self.screeninfo()
                 self.inventory.inventorytext()
 
             pygame.display.flip()

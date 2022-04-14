@@ -14,7 +14,7 @@ class Level2:
 
          # Assets
 
-        self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
+        self.portal = pygame.image.load('_IMGS/portal.png')
     
         # Variables to make sure assets have the upper left corner of the background as a basis
 

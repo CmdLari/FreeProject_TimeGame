@@ -13,6 +13,13 @@ from set_inventory import Inventory
 class Level1:
     '''Manages the 1st level'''
 
+
+    # Min | Start | Max Player stats
+    # -- | 20 | 70 Health
+    # -- | 50 | -- Sanity
+    # -- | 00 | -- Love
+    # -- | 00 | -- Rationality
+
     def __init__(self):
         self.bg = Background()
         self.player = Player()
@@ -52,13 +59,14 @@ class Level1:
         self.health = json_data["player_health"]
 
         # Text Vars
-        self.textcolour = (200, 252, 255)
+
+        self.textcolour = (0, 255, 240)
         self.textfont = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
-        self.textbg = (31, 13, 0)
+        self.textbg = (20, 0, 40)
 
          # Assets
 
-        self.portal = pygame.image.load('_IMGS/_Lvl1/portallvl1.png')
+        self.portal = pygame.image.load('_IMGS/portal.png')
         self.ship = pygame.image.load('_IMGS/spaceship.png')
         self.ship_state = True
 

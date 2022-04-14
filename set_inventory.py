@@ -35,9 +35,11 @@ class Inventory:
         self.inventorylist = [self.inv1, self.inv2, self.inv3, self.inv4, self.inv5, self.inv6, self.inv7, self.inv8, self.inv9, self.inv10]
 
         # Text Vars
-        self.textcolour = (200, 252, 255)
+        self.textcolour = (0, 255, 240)
         self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 15)
-        self.textbg = (31, 13, 0)
+        self.textfont_inv = pygame.font.Font("0-font_press_start2p.ttf", 10)
+        self.textfont_invinf = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
+        self.textbg = (20, 0, 40)
 
         # Inventory msg
         self.invpos_key = 0
@@ -46,7 +48,6 @@ class Inventory:
         '''Blits inventory to screen'''
         for item in self.inventorylist:
             self.item_msg = item
-            self.item_msg_img = self.textfont.render(self.item_msg, True, self.textcolour, self.textbg)
             self.item_msg_img_rect = self.item_msg_img.get_rect()
             self.y = 40
             self.item_msg_img_rect.x = 40
@@ -73,17 +74,19 @@ class Inventory:
         '''Draws info about Inventory to screen'''
         self.invpos = int(self.invpos_key)
         self.inv_msg = self.inventorylist[self.invpos]
+     
+        if self.inventorylist[self.invpos] == "Analyzer":
+            self.inv_inf_msg = "This will help you find viable nourishment"
+        else:
+            self.inv_inf_msg = " There is nothing in your inventory "
+
         self.inv_msg_img = self.textfont.render(self.inv_msg, True, self.textcolour, self.textbg)
         self.inv_msg_img_rect = self.inv_msg_img.get_rect()
-        self.inv_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height        
+        self.inv_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height   
 
-        self.inv_inf_msg = " There is nothing in your inventory "
-        self.inv_inf_msg_img = self.textfont.render(self.inv_inf_msg, True, self.textcolour, self.textbg)
+        self.inv_inf_msg_img = self.textfont_invinf.render(self.inv_inf_msg, True, self.textcolour, self.textbg)
         self.inv_inf_msg_img_rect = self.inv_inf_msg_img.get_rect()
-        self.inv_inf_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height        
-
-        if self.inventorylist[self.invpos] == "Analyzer":
-            self.inv_inf_msg = "This will help you determine if things around you are poisonous or not"
+        self.inv_inf_msg_img_rect.center = self.bg.screen.get_rect().width//2, self.bg.screen.get_rect().height//2 + self.player.playerimg_up.get_rect().height + self.inv_msg_img_rect.height +10       
 
         self.bg.screen.blit(self.inv_msg_img, self.inv_msg_img_rect)
         self.bg.screen.blit(self.inv_inf_msg_img, self.inv_inf_msg_img_rect)
