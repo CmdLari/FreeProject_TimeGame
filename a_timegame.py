@@ -161,7 +161,7 @@ class Timegame:
             elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 self.player.direction = LEFT
                 if self.bg.bg_rect_x <= self.bg.screen.get_rect().x:
-                    self.mov_x += 2
+                    self.mov_x += 5
                     Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
                     self.mov_x = Utils.read_from_playerstate("mov_x", self.playerstats_file)
                     self.map_x = self.bg.bg.get_rect().x+self.mov_x
@@ -171,7 +171,7 @@ class Timegame:
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT: 
                 self.player.direction = RIGHT
                 if self.bg.bg_rect_x >= self.bg.screen.get_rect().x - self.bg.screen.get_rect().width*3:
-                    self.mov_x -= 2
+                    self.mov_x -= 5
                     Utils.write_to_playerstate("mov_x", self.mov_x, self.playerstats_file)
                     self.mov_x = Utils.read_from_playerstate("mov_x", self.playerstats_file)
                     self.map_x = self.bg.bg.get_rect().x+self.mov_x
@@ -181,7 +181,7 @@ class Timegame:
             elif event.key == pygame.K_w or event.key == pygame.K_UP:
                 self.player.direction = UP
                 if self.bg.bg_rect_y <= self.bg.screen.get_rect().y:
-                    self.mov_y += 2
+                    self.mov_y += 5
                     Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)
                     self.mov_y = Utils.read_from_playerstate("mov_y", self.playerstats_file)
                     self.map_y = self.bg.bg.get_rect().y+self.mov_y
@@ -191,7 +191,7 @@ class Timegame:
             elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 self.player.direction = DOWN
                 if self.bg.bg_rect_y >= self.bg.screen.get_rect().y - self.bg.screen.get_rect().height*3:
-                    self.mov_y -= 2
+                    self.mov_y -= 5
                     Utils.write_to_playerstate("mov_y", self.mov_y, self.playerstats_file)
                     self.mov_y = Utils.read_from_playerstate("mov_y", self.playerstats_file)
                     self.map_y = self.bg.bg.get_rect().y+self.mov_y
