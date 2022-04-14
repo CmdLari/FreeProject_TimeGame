@@ -4,14 +4,14 @@ import pygame
 import json
 
 # Import own files
-from utils import Utils
+from ut_utils import Utils
 
 class NewGame:
     '''Resets the game'''
 
     def __init__(self):
-        self.playerstats_file = "playerstate.json"
-        player_state_file = open("playerstate.json")
+        self.playerstats_file = "0-playerstate.json"
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
 
         self.mov_x = json_data["mov_x"]

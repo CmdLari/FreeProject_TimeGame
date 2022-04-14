@@ -5,10 +5,10 @@ import pygame
 import json
 
 # Import own files
-from background import Background
-from player import Player
-from utils import Utils
-from inventory import Inventory
+from vis_background import Background
+from set_player import Player
+from ut_utils import Utils
+from set_inventory import Inventory
 
 class Level1:
     '''Manages the 1st level'''
@@ -19,7 +19,7 @@ class Level1:
         self.inventory = Inventory()
 
         # Movement Variables
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         self.mov_x = json_data["mov_x"]
         self.mov_y = json_data["mov_y"]
@@ -43,7 +43,7 @@ class Level1:
         self.maxinv = 10
 
         # Player Stats
-        self.playerstats_file = "playerstate.json"
+        self.playerstats_file = "0-playerstate.json"
 
         self.player_lvl = json_data["player_level"]
         self.sanity = json_data["player_sanity"]
@@ -96,7 +96,7 @@ class Level1:
         '''Initializes lvl 1 map assets'''
 
         # Movement Variables
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         self.map_x = json_data["map_x"]
         self.map_y = json_data["map_y"]

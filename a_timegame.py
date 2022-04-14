@@ -6,14 +6,13 @@ import sys
 from time import sleep
 
 # Import own files
-from settings import Settings
-from background import Background
-from player import LEFT, RIGHT, UP, DOWN, Player
-from level1 import Level1
-from level2 import Level2
-from utils import Utils
-from new_game import NewGame
-from inventory import Inventory
+from vis_background import Background
+from set_player import LEFT, RIGHT, UP, DOWN, Player
+from lvl_level1 import Level1
+from lvl_level2 import Level2
+from ut_utils import Utils
+from ut_new_game import NewGame
+from set_inventory import Inventory
 
 # This is a change
 
@@ -27,7 +26,6 @@ class Timegame:
         self.clock = pygame.time.Clock()
 
         # rename imported files
-        self.settings = Settings()
         self.bg = Background()
         self.player = Player()
         self.lvl1 = Level1()
@@ -35,7 +33,7 @@ class Timegame:
         self.new_game = NewGame()
         self.inventory = Inventory()
 
-        self.playerstats_file = "playerstate.json"
+        self.playerstats_file = "0-playerstate.json"
 
         # Initialize screen
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -43,7 +41,7 @@ class Timegame:
         self.height = self.screen.get_rect().height
 
         # Movement Variables
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         self.mov_x = json_data["mov_x"]
         self.mov_y = json_data["mov_y"]
@@ -51,7 +49,7 @@ class Timegame:
         self.map_y = json_data["map_y"]            
 
         # Player Stats
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         
         self.player_lvl = json_data["player_level"]

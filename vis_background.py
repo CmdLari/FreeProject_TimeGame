@@ -2,14 +2,9 @@
 import pygame
 import json
 
-# Import own files
-from player import Player
-
 class Background:
     '''Manages all backgrounds'''
     def __init__(self):
-
-        self.player = Player()
 
         # Variables in case of movement
         self.ix = 0
@@ -31,7 +26,7 @@ class Background:
         '''Blank Background to be replaced'''
 
         # Movement Variables
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
         self.mov_x = json_data["mov_x"]
         self.mov_y = json_data["mov_y"]

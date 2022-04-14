@@ -7,9 +7,9 @@ import pygame
 import json
 
 # Import own files
-from background import Background
-from player import Player
-from utils import Utils
+from vis_background import Background
+from set_player import Player
+from ut_utils import Utils
 
 class Inventory:
     '''Manages the 1st level'''
@@ -18,7 +18,7 @@ class Inventory:
         self.bg = Background()
         self.player = Player()
 
-        player_state_file = open("playerstate.json")
+        player_state_file = open("0-playerstate.json")
         json_data = json.load(player_state_file)
 
         self.inv1 = json_data["inv_1"]
