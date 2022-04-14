@@ -20,7 +20,8 @@ class Background:
         # Text Vars
         self.textcolour = (200, 252, 255)
         self.textcolour_health = (255, 15, 111)
-        self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 15)
+        self.textfont = pygame.font.Font("0-font_press_start2p.ttf", 10)
+        self.textfont_health = pygame.font.Font("0-font_press_start2p.ttf", 20)
         self.textfont_copy = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
         self.textbg = (31, 13, 0)
         
@@ -65,7 +66,7 @@ class Background:
         elif self.health >= 1 and self.health <= 20:
             self.health_msg = "♥"
 
-        self.health_msg_img = self.textfont.render(self.health_msg, True, self.textcolour_health)
+        self.health_msg_img = self.textfont_health.render(self.health_msg, True, self.textcolour_health)
         self.health_msg_img_rect = self.health_msg_img.get_rect()
         self.health_msg_img_rect.center = self.screen.get_rect().width//2, 40
         self.screen.blit(self.health_msg_img, self.health_msg_img_rect)

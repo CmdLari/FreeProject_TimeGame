@@ -63,7 +63,6 @@ class Timegame:
             self.ingame_music = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
         if self.player_lvl == 2:
             self.ingame_music = pygame.mixer.Sound('_MUS/timegame_lvl1.mp3')
-
               
     def run_game(self):
         '''Main loop for the game'''

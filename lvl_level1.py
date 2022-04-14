@@ -13,6 +13,12 @@ from set_inventory import Inventory
 class Level1:
     '''Manages the 1st level'''
 
+    # Min | Start | Max Player stats
+    # -- | 20 | 70 Health
+    # -- | 50 | -- Sanity
+    # -- | 00 | -- Love
+    # -- | 00 | -- Rationality
+
     def __init__(self):
         self.bg = Background()
         self.player = Player()
