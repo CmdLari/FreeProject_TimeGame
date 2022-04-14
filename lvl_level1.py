@@ -13,6 +13,7 @@ from set_inventory import Inventory
 class Level1:
     '''Manages the 1st level'''
 
+
     # Min | Start | Max Player stats
     # -- | 20 | 70 Health
     # -- | 50 | -- Sanity
@@ -58,6 +59,7 @@ class Level1:
         self.health = json_data["player_health"]
 
         # Text Vars
+
         self.textcolour = (0, 255, 240)
         self.textfont = pygame.font.Font("0-font_share_tech_mono.ttf", 25)
         self.textbg = (20, 0, 40)

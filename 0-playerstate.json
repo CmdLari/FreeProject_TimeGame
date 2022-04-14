@@ -1,8 +1,8 @@
 {
-    "mov_x": 1023,
-    "mov_y": 109,
-    "map_x": 1023,
-    "map_y": 109,
+    "mov_x": 0,
+    "mov_y": 0,
+    "map_x": 0,
+    "map_y": 0,
     "player_level": 1,
     "player_sanity": 50,
     "player_love": 0,

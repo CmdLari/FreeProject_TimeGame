@@ -13,8 +13,7 @@ from lvl_level2 import Level2
 from ut_utils import Utils
 from ut_new_game import NewGame
 from set_inventory import Inventory
-
-# This is a change
+from vis_screeninfo import Screeninfo
 
 class Timegame:
     '''Manages the game'''
@@ -32,6 +31,7 @@ class Timegame:
         self.lvl2 = Level2()
         self.new_game = NewGame()
         self.inventory = Inventory()
+        self.screen_info = Screeninfo()
 
         self.playerstats_file = "0-playerstate.json"
 
@@ -93,8 +93,7 @@ class Timegame:
                 self.check_events()
                 self.draw_lvl()
                 self.drawplayer()
-                self.bg.screentext()
-                self.screeninfo()
+                self.screen_info.screentext()
                 self.inventory.inventorytext()
 
             pygame.display.flip()
@@ -252,7 +251,7 @@ class Timegame:
                 elif event.key == pygame.K_g:
                     self.infoscreen = False
         if self.infoscreen == True:    
-            self.bg.info_screen()
+            self.screen_info.screentext()
 
     def draw_menu_buttons(self):
         '''Initialize menu buttons'''

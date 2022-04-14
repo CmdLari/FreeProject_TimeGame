@@ -41,36 +41,6 @@ class Background:
         self.bg_rect = (self.bg_rect_x, self.bg_rect_y)
         self.screen.blit(self.bg, self.bg_rect)
         
-
-    def screentext(self):
-        '''Displays information on screen'''
-        self.help_msg = "[H] HELP"
-        self.help_msg_img = self.textfont.render(self.help_msg, True, self.textcolour)
-        self.help_msg_img_rect = self.help_msg_img.get_rect()
-        self.help_msg_img_rect.center = self.screen.get_rect().width -self.help_msg_img_rect.width -40, 40
-        self.screen.blit(self.help_msg_img, self.help_msg_img_rect)
-
-        # Player health
-        if self.health >= 81 and self.health <= 100:
-            self.health_msg = "♥♥♥♥♥"
-
-        elif self.health >= 61 and self.health <= 80:
-            self.health_msg = "♥♥♥♥"
-
-        elif self.health >= 41 and self.health <= 60:
-            self.health_msg = "♥♥♥"
-
-        elif self.health >= 21 and self.health <= 40:
-            self.health_msg = "♥♥"
-
-        elif self.health >= 1 and self.health <= 20:
-            self.health_msg = "♥"
-
-        self.health_msg_img = self.textfont_health.render(self.health_msg, True, self.textcolour_health)
-        self.health_msg_img_rect = self.health_msg_img.get_rect()
-        self.health_msg_img_rect.center = self.screen.get_rect().width//2, 40
-        self.screen.blit(self.health_msg_img, self.health_msg_img_rect)
-
     def info_screen(self):
         '''Displays info page'''
       

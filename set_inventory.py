@@ -48,7 +48,6 @@ class Inventory:
         '''Blits inventory to screen'''
         for item in self.inventorylist:
             self.item_msg = item
-            self.item_msg_img = self.textfont_inv.render(self.item_msg, True, self.textcolour, self.textbg)
             self.item_msg_img_rect = self.item_msg_img.get_rect()
             self.y = 40
             self.item_msg_img_rect.x = 40
