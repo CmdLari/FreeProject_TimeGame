@@ -5,8 +5,7 @@ class Inputevents:
     '''Manages all key events'''
 
     def __init__(self):
-
-        pygame.init()
+        pass
 
     def check_keyevents(self):
         '''Checks for key and mouse events'''
