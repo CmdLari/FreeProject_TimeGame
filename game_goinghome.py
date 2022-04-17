@@ -3,7 +3,6 @@ import pygame
 # Import own classes
 from settings_background import Background
 from settings_inputevents import Inputevents
-from settings_gamestate import Gamestate
 from screen_menu import Menu
 from utility_saves import Saves
 
@@ -21,14 +20,11 @@ class Goinghome:
         self.inputevents = Inputevents()
         self.menu = Menu()
         self.saves = Saves()
-        self.gamestate = Gamestate(self.background, self.menu, self.saves)
 
         self.menusound = pygame.mixer.Sound('_MUS/Timegame_menu.mp3')
 
     def run_game(self):
         '''Runs Going Home'''
-
-        self.active = False
 
         self.menusound.set_volume(0.5)
         pygame.mixer.Sound.play(self.menusound, loops=-1)
@@ -44,8 +40,11 @@ class Goinghome:
             # Check for input
             self.inputevents.check_keyevents()
 
-            # Chose Setting
-            self.gamestate.setup_screen()
+            # Start in menu
+            map = self.menu.show_menu(self.background, self.saves)
+
+            # Load map
+            self.menu.load_level(map, self.background)
 
             # Updates screen
             pygame.display.flip()

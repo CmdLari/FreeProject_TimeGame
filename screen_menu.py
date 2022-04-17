@@ -1,6 +1,9 @@
 import pygame
 import sys
 
+# Import own files
+from screen_map1 import Map1
+
 class Menu:
     '''Draws the menu'''
 
@@ -42,9 +45,10 @@ class Menu:
         self.settings_background.screen.blit(self.mouse, pygame.mouse.get_pos())
 
         # Check for clicks
-        self.menu_button_events(utility_saves)
+        menu = self.menu_button_events(utility_saves, settings_background)
+        return menu
 
-    def menu_button_events(self, utility_saves):
+    def menu_button_events(self, utility_saves, settings_background):
         '''Checks for button usage'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -53,21 +57,23 @@ class Menu:
                 if pygame.K_ESCAPE:
                     sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                # NEW GAME
                 if self.new_game_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
-                    self.new_game(utility_saves)
-                    self.map = 1
+                    map = self.new_game(utility_saves)
+                    self.load_level(map, settings_background)
+                    return map
+                # CONTINUE GAME
                 if self.continue_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
                     self.continue_game(utility_saves)
-                    self.map = 1
+                    return map
+                # QUIT
                 if self.quit_rect.collidepoint(pygame.mouse.get_pos()):
                     sys.exit()
-
+                   
     def new_game(self, utility_saves):
         '''Clears save game'''
-        self.map = 1
-        utility_saves.write_to_save("map", self.map, "0_save.json")
         self.sanity = 20
         utility_saves.write_to_save("player_sanity", self.sanity, "0_save.json")
         self.love = 0
@@ -96,21 +102,28 @@ class Menu:
         utility_saves.write_to_save("inv_9", self.inv09, "0_save.json")         
         self.inv10 = "-"
         utility_saves.write_to_save("inv_10", self.inv10, "0_save.json")     
+        return 1
 
     def continue_game(self, utility_saves):
         '''Loads save game'''
         self.map = utility_saves.read_from_save("map", "0_save.json")
-        self.sanity = utility_saves.write_to_save("player_sanity", "0_save.json")
-        self.love = utility_saves.write_to_save("player_love", "0_save.json")        
-        self.rationality = utility_saves.write_to_save("player_rationality", "0_save.json")        
-        self.health = utility_saves.write_to_save("player_health", "0_save.json")      
-        self.inv01 = utility_saves.write_to_save("inv_1", "0_save.json")         
-        self.inv02 = utility_saves.write_to_save("inv_2", "0_save.json")         
-        self.inv03 = utility_saves.write_to_save("inv_3", "0_save.json")         
-        self.inv04 = utility_saves.write_to_save("inv_4", "0_save.json")         
-        self.inv05 = utility_saves.write_to_save("inv_5", "0_save.json")         
-        self.inv06 = utility_saves.write_to_save("inv_6", "0_save.json")         
-        self.inv07 = utility_saves.write_to_save("inv_7", "0_save.json")         
-        self.inv08 = utility_saves.write_to_save("inv_8", "0_save.json")     
-        self.inv09 = utility_saves.write_to_save("inv_9", "0_save.json")         
-        self.inv10 = utility_saves.write_to_save("inv_10", "0_save.json")    
+        self.sanity = utility_saves.read_from_save("player_sanity", "0_save.json")
+        self.love = utility_saves.read_from_save("player_love", "0_save.json")        
+        self.rationality = utility_saves.read_from_save("player_rationality", "0_save.json")        
+        self.health = utility_saves.read_from_save("player_health", "0_save.json")      
+        self.inv01 = utility_saves.read_from_save("inv_1", "0_save.json")         
+        self.inv02 = utility_saves.read_from_save("inv_2", "0_save.json")         
+        self.inv03 = utility_saves.read_from_save("inv_3", "0_save.json")         
+        self.inv04 = utility_saves.read_from_save("inv_4", "0_save.json")         
+        self.inv05 = utility_saves.read_from_save("inv_5", "0_save.json")         
+        self.inv06 = utility_saves.read_from_save("inv_6", "0_save.json")         
+        self.inv07 = utility_saves.read_from_save("inv_7", "0_save.json")         
+        self.inv08 = utility_saves.read_from_save("inv_8", "0_save.json")     
+        self.inv09 = utility_saves.read_from_save("inv_9", "0_save.json")         
+        self.inv10 = utility_saves.read_from_save("inv_10", "0_save.json")
+        return self.    
+
+    def load_level(self, map, settings_background):
+        if map == 1:
+            map1 = Map1()
+            map1.show_map1(settings_background)
