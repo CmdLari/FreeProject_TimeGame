@@ -22,16 +22,7 @@ class Level:
             self.level_background = pygame.image.load("_IMGS/_Lvl1/map_lvl1.png")
             self.level_sound = pygame.mixer.Sound('_MUS/Timegame_lvl1.mp3')
             self.play_sound()
-
             window.blit_img(self.level_background, 0, 0)
-            #camera_group.update()
-            
-
-
-                
-            #camera_group.custom_draw(player)
-            
-            #window.blit_img(player.image, 0, 0)
 
 
     def save_level(self, level_number: int) -> None:

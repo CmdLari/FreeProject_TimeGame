@@ -6,13 +6,8 @@ from events import Events
 from level import Level
 from player import Player
 from portal import Portal
-
-# Import own classes
 from window import Window
-from settings_inputevents import Inputevents
-from settings_gamestate import Gamestate
 from menu import Menu
-from util import Util
 
 class Goinghome:
     '''Manages the game'''
@@ -21,26 +16,23 @@ class Goinghome:
         '''Initializes the game'''
         pygame.init()
         
-        # Create window
+        # Initialize window
         self.window = Window()
-        # Create inputevents
-        self.inputevents = Inputevents()
-        # Create menu
+        # Initialize event handler
+        self.events = Events()
+        # Initialize menu
         self.menu = Menu()
-        # Game state initially false
+        # Initialize Game state
         self.game_running = False
-        # Create camera_group
+        # Initialize camera_group
         self.camera_group = CameraGroup()
-        # Create player
+        # Initialize player
         self.player = Player((self.window.width/2, self.window.height/2), self.camera_group)
-        # Create portals on random positions
+        # Initialize portals on random positions
         for i in range(20):
             random_x = randint(1000, 2000)
             random_y = randint(1000, 2000)
             Portal((random_x, random_y), self.camera_group)
-
-        # self.saves = Saves()
-        # self.gamestate = Gamestate(self.window, self.menu, self.saves)
 
     def run_game(self):
         '''Runs Going Home'''      
@@ -48,10 +40,6 @@ class Goinghome:
         pygame.mouse.set_visible(False)
         # Start game
         while True:
-
-            # Check for input
-            #self.inputevents.check_keyevents()
-
             # If the game has not been started, show the menu
             if not self.game_running:
                 # Chose Setting
@@ -60,20 +48,12 @@ class Goinghome:
                 # Start game with selected level
                 level = Level()
                 level.load_level(level_selection, self.window)
-                # Checks Player input
-                #self.player.check_keyevents()
-                #self.player.update()
 
-                events = Events()
-                events.check_events(self.player, self.camera_group)
-
-                #self.camera_group.check_mouse_events()
+                # Checks input events for player and camera
+                self.events.check_events(self.player, self.camera_group)
 
                 self.camera_group.update()
                 self.camera_group.custom_draw(self.player, level)
-
-            #self.gamestate.setup_screen()
-            #pygame.display.update()
 
             # Updates screen
             pygame.display.flip()
