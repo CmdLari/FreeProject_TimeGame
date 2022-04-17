@@ -32,7 +32,7 @@ class CameraGroup(pygame.sprite.Group):
 
         # zoom 
         self.zoom_scale = 1
-        self.internal_surf_size = (2500,2500)
+        self.internal_surf_size = (7751,4360)
         self.internal_surf = pygame.Surface(self.internal_surf_size, pygame.SRCALPHA)
         self.internal_rect = self.internal_surf.get_rect(center = (self.half_w,self.half_h))
         self.internal_surface_size_vector = pygame.math.Vector2(self.internal_surf_size)
