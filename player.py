@@ -12,7 +12,7 @@ class Player(pygame.sprite.Sprite):
             group (pygame.sprite.Group): Group to add player to.
         """
         super().__init__(group)
-        self.image = pygame.image.load("_IMGS/player_down.png")
+        self.image = pygame.image.load("assets/_IMGS/player_down.png")
         self.rect = self.image.get_rect(center=pos)
         self.direction = pygame.math.Vector2()
         self.speed = 100
@@ -36,19 +36,19 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
-            self.image = pygame.image.load("_IMGS/player_up.png")
+            self.image = pygame.image.load("assets/_IMGS/player_up.png")
             self.direction.y = -1
         elif keys[pygame.K_DOWN]:
-            self.image = pygame.image.load("_IMGS/player_down.png")
+            self.image = pygame.image.load("assets/_IMGS/player_down.png")
             self.direction.y = 1
         else:
             self.direction.y = 0
 
         if keys[pygame.K_RIGHT]:
-            self.image = pygame.image.load("_IMGS/player_right.png")
+            self.image = pygame.image.load("assets/_IMGS/player_right.png")
             self.direction.x = 1
         elif keys[pygame.K_LEFT]:
-            self.image = pygame.image.load("_IMGS/player_left.png")
+            self.image = pygame.image.load("assets/_IMGS/player_left.png")
             self.direction.x = -1
         else:
             self.direction.x = 0

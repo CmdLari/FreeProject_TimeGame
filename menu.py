@@ -10,18 +10,18 @@ class Menu:
         """Initialize the menu"""
 
         # Assets Menu
-        self.menubackground = pygame.image.load("_IMGS/_Menu/menu_background.png")
+        self.menubackground = pygame.image.load("assets/_IMGS/_Menu/menu_background.png")
 
         # Mouse
-        self.mouse = pygame.image.load("_IMGS/_Menu/menu_mouse.png")
+        self.mouse = pygame.image.load("assets/_IMGS/_Menu/menu_mouse.png")
         
         # -- Buttons
-        self.button_newgame = pygame.image.load("_IMGS/_Menu/menu_button_new_game.png")
-        self.button_continue = pygame.image.load("_IMGS/_Menu/menu_button_continue.png")
-        self.button_quit = pygame.image.load("_IMGS/_Menu/menu_button_quit.png")  
+        self.button_newgame = pygame.image.load("assets/_IMGS/_Menu/menu_button_new_game.png")
+        self.button_continue = pygame.image.load("assets/_IMGS/_Menu/menu_button_continue.png")
+        self.button_quit = pygame.image.load("assets/_IMGS/_Menu/menu_button_quit.png")  
 
         # Music
-        self.menusound = pygame.mixer.Sound('_MUS/Timegame_menu.mp3')
+        self.menusound = pygame.mixer.Sound('assets/_MUS/Timegame_menu.mp3')
         self.menusound.set_volume(0.1)
     
     def show_menu(self, window: Window) -> Tuple[bool, int]:

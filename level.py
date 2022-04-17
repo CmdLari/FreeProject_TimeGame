@@ -11,7 +11,7 @@ class Level:
         self.level_description = "Description"
         self.level_map = "Map"
         self.level_background = "Background"
-        self.level_sound = pygame.mixer.Sound('_MUS/Timegame_lvl1.mp3')
+        self.level_sound = pygame.mixer.Sound('assets/_MUS/Timegame_lvl1.mp3')
         self.play_sound = True
 
     def load_level(self, level: int, window: Window) -> None:
@@ -26,7 +26,7 @@ class Level:
             self.play_sound_level()
             self.play_sound = False
         if level == 1:
-            self.level_background = pygame.image.load("_IMGS/_Lvl1/level1_bg.png")
+            self.level_background = pygame.image.load("assets/_IMGS/_Lvl1/level1_bg.png")
             #self.level_sound = pygame.mixer.Sound('_MUS/Timegame_lvl1.mp3')
             
             window.blit_img(self.level_background, 0, 0)
