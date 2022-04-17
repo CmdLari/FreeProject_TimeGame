@@ -9,10 +9,9 @@ from window import Window
 from menu import Menu
 
 class Goinghome:
-    '''Manages the game'''
 
     def __init__(self):
-        '''Initializes the game'''
+        """ Initializes the game """
         pygame.init()
         self.clock = pygame.time.Clock()
         # Initialize window
@@ -35,14 +34,14 @@ class Goinghome:
             Portal((random_x, random_y), self.camera_group)
 
     def run_game(self):
-        '''Runs Going Home'''      
+        """Runs the game"""    
         pygame.mixer.Sound.play(self.menu.menusound, loops=-1)
         pygame.mouse.set_visible(False)
         # Start game
         while True:
             # If the game has not been started, show the menu
             if not self.game_running:
-                # Chose Setting
+                # Choose setting an get the chosen level
                 self.game_running, level_selection = self.menu.show_menu(self.window)
             elif self.game_running:
                 # Start game with selected level
@@ -50,8 +49,9 @@ class Goinghome:
                 self.level.load_level(level_selection, self.window)
 
                 # Checks input events for player and camera
-                self.events.check_events(self.player, self.camera_group)
+                self.events.check_events(self.camera_group)
 
+                # Calls update method of every sprite in the camera group
                 self.camera_group.update()
                 self.camera_group.custom_draw(self.player, self.level)
 

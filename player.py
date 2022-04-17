@@ -2,9 +2,15 @@ import pygame
 
 
 class Player(pygame.sprite.Sprite):
+    """ Represents the player. """
 
     def __init__(self, pos, group) -> None:
-        """ Initializes the player. """
+        """ Initializes player. 
+        
+        Args:
+            pos (tuple): Player position.
+            group (pygame.sprite.Group): Group to add player to.
+        """
         super().__init__(group)
         self.image = pygame.image.load("_IMGS/player_down.png")
         self.rect = self.image.get_rect(center=pos)
@@ -26,6 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.inventory = {"Slot 1": "Empty", "Slot 2": "Empty", "Slot 3": "Empty", "Slot 4": "Empty", "Slot 5": "Empty", "Slot 6": "Empty", "Slot 7": "Empty", "Slot 8": "Empty", "Slot 9": "Empty", "Slot 10": "Empty"}
 
     def input(self):
+        """ Gets player input. """
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
@@ -48,6 +55,7 @@ class Player(pygame.sprite.Sprite):
 
 
     def update(self):
+        """ Updates the player, based on input. """
         self.input()
         self.rect.center += self.direction * self.speed
 

@@ -2,6 +2,7 @@ from window import Window
 import pygame
 
 class Level:
+    """ Represents a level. """
 
     def __init__(self) -> None:
         """ Initializes the level. """
@@ -16,8 +17,9 @@ class Level:
     def load_level(self, level: int, window: Window) -> None:
         """Loads specified level to the window
 
-        :param int level: The level to load
-        :param Window window: The window to load the level to
+        Args:
+            level: The level to load
+            window: The window to load the level to
         """
         
         if self.play_sound:
@@ -31,7 +33,10 @@ class Level:
 
 
     def save_level(self, level_number: int) -> None:
-        """ Saves the level to a file. """
+        """ Saves the level to a file.
+
+        :param int level_number: The current level number
+        """
         raise NotImplementedError
 
     def play_sound_level(self) -> None:
