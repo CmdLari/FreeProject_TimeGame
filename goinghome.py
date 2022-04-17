@@ -7,6 +7,7 @@ from player import Player
 from portal import Portal
 from window import Window
 from menu import Menu
+from text import Text
 
 class Goinghome:
 
@@ -51,6 +52,8 @@ class Goinghome:
                 # Calls update method of every sprite in the camera group
                 self.camera_group.update()
                 self.camera_group.custom_draw(self.player, self.level)
+
+                self.level.portal.check_collision(self.player, self.window)
 
             # Updates screen
             pygame.display.flip()

@@ -46,4 +46,4 @@ class Level:
 
     def place_portal(self, camera_group):
         """ Places portal at determined coordinates"""
-        Portal((20, 20), camera_group)
+        self.portal = Portal((20, 20), camera_group)
