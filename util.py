@@ -1,6 +1,6 @@
 import json
 
-class Saves:
+class Util:
     '''Reads and writes to json-File'''
 
     @staticmethod
@@ -21,5 +21,4 @@ class Saves:
         
         with open(json_path, "r") as json_file:
             save = json.load(json_file)
-
             return save[json_key]
