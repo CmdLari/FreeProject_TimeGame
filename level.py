@@ -2,6 +2,7 @@ from window import Window
 import pygame
 
 class Level:
+    """ Represents a level. """
 
     def __init__(self) -> None:
         """ Initializes the level. """
@@ -10,28 +11,32 @@ class Level:
         self.level_description = "Description"
         self.level_map = "Map"
         self.level_background = "Background"
-        self.level_sound = pygame.mixer.Sound('_MUS/Timegame_lvl1.mp3')
+        self.level_sound = pygame.mixer.Sound('assets/_MUS/Timegame_lvl1.mp3')
         self.play_sound = True
 
     def load_level(self, level: int, window: Window) -> None:
         """Loads specified level to the window
 
-        :param int level: The level to load
-        :param Window window: The window to load the level to
+        Args:
+            level: The level to load
+            window: The window to load the level to
         """
         
         if self.play_sound:
             self.play_sound_level()
             self.play_sound = False
         if level == 1:
-            self.level_background = pygame.image.load("_IMGS/_Lvl1/level1_bg.png")
+            self.level_background = pygame.image.load("assets/_IMGS/_Lvl1/level1_bg.png")
             #self.level_sound = pygame.mixer.Sound('_MUS/Timegame_lvl1.mp3')
             
             window.blit_img(self.level_background, 0, 0)
 
 
     def save_level(self, level_number: int) -> None:
-        """ Saves the level to a file. """
+        """ Saves the level to a file.
+
+        :param int level_number: The current level number
+        """
         raise NotImplementedError
 
     def play_sound_level(self) -> None:

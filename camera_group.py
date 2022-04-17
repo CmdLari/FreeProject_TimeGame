@@ -4,7 +4,9 @@ from level import Level
 from player import Player
 
 class CameraGroup(pygame.sprite.Group):
+
     def __init__(self) -> None:
+        """ Initializes the camera group. """
         super().__init__()
         self.display_surface = pygame.display.get_surface()
 		
@@ -23,7 +25,7 @@ class CameraGroup(pygame.sprite.Group):
         self.camera_rect = pygame.Rect(l,t,w,h)
 
         # ground
-        self.ground_surf = pygame.image.load('_IMGS/portal.png').convert_alpha()
+        self.ground_surf = pygame.image.load('assets/_IMGS/portal.png').convert_alpha()
         self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
         # camera speed
@@ -41,67 +43,22 @@ class CameraGroup(pygame.sprite.Group):
         self.internal_offset.y = self.internal_surf_size[1] // 2 - self.half_h
 
 
-    def mouse_control(self):
-        mouse = pygame.math.Vector2(pygame.mouse.get_pos())
-        mouse_offset_vector = pygame.math.Vector2()      
-        left_border = self.camera_borders['left']
-        top_border = self.camera_borders['top']
-        right_border = self.display_surface.get_size()[0] - self.camera_borders['right']
-        bottom_border = self.display_surface.get_size()[1] - self.camera_borders['bottom']      
-        if top_border < mouse.y < bottom_border:
-            if mouse.x < left_border:
-                mouse_offset_vector.x = mouse.x - left_border
-                pygame.mouse.set_pos((left_border,mouse.y))
-            if mouse.x > right_border:
-                mouse_offset_vector.x = mouse.x - right_border
-                pygame.mouse.set_pos((right_border,mouse.y))
-        elif mouse.y < top_border:
-            if mouse.x < left_border:
-                mouse_offset_vector = mouse - pygame.math.Vector2(left_border,top_border)
-                pygame.mouse.set_pos((left_border,top_border))
-            if mouse.x > right_border:
-                mouse_offset_vector = mouse - pygame.math.Vector2(right_border,top_border)
-                pygame.mouse.set_pos((right_border,top_border))
-        elif mouse.y > bottom_border:
-            if mouse.x < left_border:
-                mouse_offset_vector = mouse - pygame.math.Vector2(left_border,bottom_border)
-                pygame.mouse.set_pos((left_border,bottom_border))
-            if mouse.x > right_border:
-                mouse_offset_vector = mouse - pygame.math.Vector2(right_border,bottom_border)
-                pygame.mouse.set_pos((right_border,bottom_border))      
-        if left_border < mouse.x < right_border:
-            if mouse.y < top_border:
-                mouse_offset_vector.y = mouse.y - top_border
-                pygame.mouse.set_pos((mouse.x,top_border))
-            if mouse.y > bottom_border:
-                mouse_offset_vector.y = mouse.y - bottom_border
-                pygame.mouse.set_pos((mouse.x,bottom_border))       
-        self.offset += mouse_offset_vector * self.mouse_speed
-    
-    def zoom_keyboard_control(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_q]:
-            self.zoom_scale += 0.1
-        if keys[pygame.K_e]:
-            self.zoom_scale -= 0.1
+    def center_target_camera(self, target: pygame.math.Vector2):
+        """ Centers the camera on a target
 
-    def center_target_camera(self,target):
+        Args:
+            target (pygame.math.Vector2): Target to center camera on.
+        """
         self.offset.x = target.rect.centerx - self.half_w
         self.offset.y = target.rect.centery - self.half_h
-
-    
-    def check_mouse_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEWHEEL:
-                self.zoom_scale += event.y * 0.03
-
 
 
     def custom_draw(self, player: Player, level: Level) -> None:
         """Draws player and level to internal surface and blits it to display surface with offset and zoom scale.
 
-        :param Player player: The current player
-        :param Level level: The current level
+        Args:
+            player (Player): Player to draw.
+            level (Level): Level to draw.
         """
         # Camera is focussed on the player
         self.center_target_camera(player)
@@ -112,7 +69,6 @@ class CameraGroup(pygame.sprite.Group):
         # Camera is controlled by keyboard
         #self.zoom_keyboard_control()
 
-        # self.internal_surf.fill('#71ddee') # blue sky background
         self.internal_surf.blit(level.level_background, (0,0)) # internal background
 
 		# ground 

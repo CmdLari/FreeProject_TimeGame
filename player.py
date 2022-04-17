@@ -2,11 +2,17 @@ import pygame
 
 
 class Player(pygame.sprite.Sprite):
+    """ Represents the player. """
 
     def __init__(self, pos, group) -> None:
-        """ Initializes the player. """
+        """ Initializes player. 
+        
+        Args:
+            pos (tuple): Player position.
+            group (pygame.sprite.Group): Group to add player to.
+        """
         super().__init__(group)
-        self.image = pygame.image.load("_IMGS/player_down.png")
+        self.image = pygame.image.load("assets/_IMGS/player_down.png")
         self.rect = self.image.get_rect(center=pos)
         self.direction = pygame.math.Vector2()
         self.speed = 100
@@ -26,28 +32,30 @@ class Player(pygame.sprite.Sprite):
         self.inventory = {"Slot 1": "Empty", "Slot 2": "Empty", "Slot 3": "Empty", "Slot 4": "Empty", "Slot 5": "Empty", "Slot 6": "Empty", "Slot 7": "Empty", "Slot 8": "Empty", "Slot 9": "Empty", "Slot 10": "Empty"}
 
     def input(self):
+        """ Gets player input. """
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
-            self.image = pygame.image.load("_IMGS/player_up.png")
+            self.image = pygame.image.load("assets/_IMGS/player_up.png")
             self.direction.y = -1
         elif keys[pygame.K_DOWN]:
-            self.image = pygame.image.load("_IMGS/player_down.png")
+            self.image = pygame.image.load("assets/_IMGS/player_down.png")
             self.direction.y = 1
         else:
             self.direction.y = 0
 
         if keys[pygame.K_RIGHT]:
-            self.image = pygame.image.load("_IMGS/player_right.png")
+            self.image = pygame.image.load("assets/_IMGS/player_right.png")
             self.direction.x = 1
         elif keys[pygame.K_LEFT]:
-            self.image = pygame.image.load("_IMGS/player_left.png")
+            self.image = pygame.image.load("assets/_IMGS/player_left.png")
             self.direction.x = -1
         else:
             self.direction.x = 0
 
 
     def update(self):
+        """ Updates the player, based on input. """
         self.input()
         self.rect.center += self.direction * self.speed
 
