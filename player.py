@@ -16,7 +16,6 @@ class Player(pygame.sprite.Sprite):
         self.max_health = 100
         self.damage = 10
         self.defense = 10
-        self.speed = 10
         self.level = 1
         self.love = 0
         self.rationality = 0
@@ -26,6 +25,27 @@ class Player(pygame.sprite.Sprite):
         self.experience_to_next_level_multiplier = 1.5
         self.inventory = {"Slot 1": "Empty", "Slot 2": "Empty", "Slot 3": "Empty", "Slot 4": "Empty", "Slot 5": "Empty", "Slot 6": "Empty", "Slot 7": "Empty", "Slot 8": "Empty", "Slot 9": "Empty", "Slot 10": "Empty"}
 
+    def input(self):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_UP]:
+            self.direction.y = -1
+        elif keys[pygame.K_DOWN]:
+            self.direction.y = 1
+        else:
+            self.direction.y = 0
+
+        if keys[pygame.K_RIGHT]:
+            self.direction.x = 1
+        elif keys[pygame.K_LEFT]:
+            self.direction.x = -1
+        else:
+            self.direction.x = 0
+
+
+    def update(self):
+        self.input()
+        self.rect.center += self.direction * self.speed
 
     def level_up(self) -> None:
         """ Increases player stats. """

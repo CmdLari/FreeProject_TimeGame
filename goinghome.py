@@ -14,7 +14,7 @@ class Goinghome:
     def __init__(self):
         '''Initializes the game'''
         pygame.init()
-        
+        self.clock = pygame.time.Clock()
         # Initialize window
         self.window = Window()
         # Initialize event handler
@@ -56,6 +56,7 @@ class Goinghome:
 
             # Updates screen
             pygame.display.flip()
+            self.clock.tick(60)
 
 
 if __name__ == '__main__':
