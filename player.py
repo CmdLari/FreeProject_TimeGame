@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load("_IMGS/player_down.png")
         self.rect = self.image.get_rect(center=pos)
         self.direction = pygame.math.Vector2()
-        self.speed = 5
+        self.speed = 100
 
         self.name = "Player"
         self.health = 100
@@ -39,23 +39,29 @@ class Player(pygame.sprite.Sprite):
 
         keys = pygame.key.get_pressed()
 
+
         if keys[pygame.K_UP]:
             self.direction.y = -1
-            print("up")
+            self.rect.center += self.direction * self.speed
             self.image = pygame.image.load("_IMGS/player_up.png")
         elif keys[pygame.K_DOWN]:
             self.direction.y = 1
+            self.rect.center += self.direction * self.speed
             self.image = pygame.image.load("_IMGS/player_down.png")
         else:
             self.direction.y =  0    
         if keys[pygame.K_RIGHT]:
             self.direction.x = 1
+            self.rect.center += self.direction * self.speed
             self.image = pygame.image.load("_IMGS/player_right.png")
         elif keys[pygame.K_LEFT]:
             self.direction.x = -1
+            self.rect.center += self.direction * self.speed
             self.image = pygame.image.load("_IMGS/player_left.png")
         else:
             self.direction.x = 0
+            self.rect.center += self.direction * self.speed
+            
 
         # Quit
         if event.key == pygame.K_ESCAPE:

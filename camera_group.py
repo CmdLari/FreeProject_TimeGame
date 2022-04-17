@@ -89,8 +89,20 @@ class CameraGroup(pygame.sprite.Group):
         self.offset.x = target.rect.centerx - self.half_w
         self.offset.y = target.rect.centery - self.half_h
 
+    
+    def check_mouse_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEWHEEL:
+                self.zoom_scale += event.y * 0.03
+
+
 
     def custom_draw(self, player: Player, level: Level) -> None:
+        """Draws player and level to internal surface and blits it to display surface with offset and zoom scale.
+
+        :param Player player: The current player
+        :param Level level: The current level
+        """
         # Camera is focussed on the player
         self.center_target_camera(player)
 
@@ -108,7 +120,7 @@ class CameraGroup(pygame.sprite.Group):
         # active elements
         for sprite in sorted(self.sprites(),key = lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset + self.internal_offset
-            self.internal_surf.blit(sprite.image,offset_pos)     
+            self.internal_surf.blit(sprite.image,offset_pos)
         scaled_surf = pygame.transform.scale(self.internal_surf,self.internal_surface_size_vector * self.zoom_scale)
         scaled_rect = scaled_surf.get_rect(center = (self.half_w,self.half_h))    
         self.display_surface.blit(scaled_surf,scaled_rect)
