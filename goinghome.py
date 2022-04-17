@@ -22,16 +22,14 @@ class Goinghome:
         self.menu = Menu()
         # Initialize Game state
         self.game_running = False
-        self.level = Level()
+        # Load level 1 initially
+        self.level = Level(level_background="assets/_IMGS/_Lvl1/level1_bg.png")
         # Initialize camera_group
-        self.camera_group = CameraGroup()
+        self.camera_group = CameraGroup(self.level)
+        # Initialize portal
+        self.level.place_portal(self.camera_group)
         # Initialize player
         self.player = Player((self.window.width/2, self.window.height/2), self.camera_group)
-        # Initialize portals on random positions
-        for i in range(20):
-            random_x = randint(1000, 2000)
-            random_y = randint(1000, 2000)
-            Portal((random_x, random_y), self.camera_group)
 
     def run_game(self):
         """Runs the game"""    
@@ -45,8 +43,7 @@ class Goinghome:
                 self.game_running, level_selection = self.menu.show_menu(self.window)
             elif self.game_running:
                 # Start game with selected level
-                
-                self.level.load_level(level_selection, self.window)
+                self.level.load_level(level_selection, self.camera_group)
 
                 # Checks input events for player and camera
                 self.events.check_events(self.camera_group)

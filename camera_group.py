@@ -5,7 +5,7 @@ from player import Player
 
 class CameraGroup(pygame.sprite.Group):
 
-    def __init__(self) -> None:
+    def __init__(self, level) -> None:
         """ Initializes the camera group. """
         super().__init__()
         self.display_surface = pygame.display.get_surface()
@@ -25,7 +25,7 @@ class CameraGroup(pygame.sprite.Group):
         self.camera_rect = pygame.Rect(l,t,w,h)
 
         # ground
-        self.ground_surf = pygame.image.load('assets/_IMGS/portal.png').convert_alpha()
+        self.ground_surf = level.level_background
         self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
         # camera speed
@@ -72,7 +72,8 @@ class CameraGroup(pygame.sprite.Group):
         self.internal_surf.blit(level.level_background, (0,0)) # internal background
 
 		# ground 
-        ground_offset = self.ground_rect.topleft - self.offset + self.internal_offset
+        ground_offset = (player.direction.x - self.offset.x, player.direction.y - self.offset.y)
+        # (x , y)
         self.internal_surf.blit(self.ground_surf,ground_offset)
 
         # active elements
