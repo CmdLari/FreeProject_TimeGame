@@ -1,3 +1,5 @@
+from typing import Tuple
+from camera_group import CameraGroup
 from window import Window
 import pygame
 import sys
@@ -26,7 +28,7 @@ class Menu:
         self.menusound = pygame.mixer.Sound('_MUS/Timegame_menu.mp3')
         self.menusound.set_volume(0.1)
     
-    def show_menu(self, window: Window):
+    def show_menu(self, window: Window) -> Tuple[bool, int]:
         '''Draws menu'''
         # Background
         window.blit_img(self.menubackground, 0, 0)
@@ -44,38 +46,42 @@ class Menu:
         window.screen.blit(self.mouse, pygame.mouse.get_pos())
 
         # Check for clicks
-        game_running = self.menu_button_events(window)
-        return game_running
+        game_running, level_selection = self.menu_button_events(window)
+        return game_running, level_selection
 
-    def menu_button_events(self, window: Window):
+    def menu_button_events(self, window: Window) -> Tuple[bool, int]:
         '''Checks for button usage'''
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 sys.exit()            
             elif event.type == pygame.KEYDOWN:
                 if pygame.K_ESCAPE:
                     sys.exit()
-                    
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # New Game
                 if self.new_game_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
                     # self.new_game(utility_saves)
-                    level = Level()
-                    level.load_level(1, window)
+                    level_selection = 1
                     # Set game state to running: Game running = True
-                    return True
+                    return True, level_selection
 
                 # Continue    
                 if self.continue_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
+                    level_selection = 2
                     # self.continue_game(utility_saves)
-                    self.level = 1
+                    #self.level = 1
                     # Set game state to running: Game running = True
-                    return True
+                    return True, level_selection
                 # Quit    
                 if self.quit_rect.collidepoint(pygame.mouse.get_pos()):
                     sys.exit()
+        return False, 0
+
+        
 
     # def new_game(self, utility_saves):
     #     '''Clears save game'''

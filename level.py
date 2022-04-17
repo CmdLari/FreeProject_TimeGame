@@ -1,5 +1,8 @@
+from random import randint
 from player import Player
+from test_trees import Tree
 from window import Window
+from camera_group import CameraGroup
 import pygame
 
 class Level:
@@ -13,7 +16,7 @@ class Level:
         self.level_background = "Background"
         self.level_sound = "Soundtrack"
 
-    def load_level(self, level: int, window: Window) -> None:
+    def load_level(self, level: int, window: Window, camera_group: CameraGroup) -> None:
         """Loads specified level to the window
 
         :param int level: The level to load
@@ -25,9 +28,14 @@ class Level:
             self.play_sound()
 
             window.blit_img(self.level_background, 0, 0)
+            #camera_group.update()
+            
 
-            player = Player()
-            window.blit_img(player.player_image, 0, 0)
+
+                
+            #camera_group.custom_draw(player)
+            
+            #window.blit_img(player.image, 0, 0)
 
 
     def save_level(self, level_number: int) -> None:
