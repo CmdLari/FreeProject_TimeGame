@@ -42,14 +42,18 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_UP]:
             self.direction.y = -1
             print("up")
+            self.image = pygame.image.load("_IMGS/player_up.png")
         elif keys[pygame.K_DOWN]:
             self.direction.y = 1
+            self.image = pygame.image.load("_IMGS/player_down.png")
         else:
             self.direction.y =  0    
         if keys[pygame.K_RIGHT]:
             self.direction.x = 1
+            self.image = pygame.image.load("_IMGS/player_right.png")
         elif keys[pygame.K_LEFT]:
             self.direction.x = -1
+            self.image = pygame.image.load("_IMGS/player_left.png")
         else:
             self.direction.x = 0
 

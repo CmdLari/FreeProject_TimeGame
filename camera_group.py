@@ -1,4 +1,5 @@
 import pygame
+from level import Level
 
 from player import Player
 
@@ -89,7 +90,7 @@ class CameraGroup(pygame.sprite.Group):
         self.offset.y = target.rect.centery - self.half_h
 
 
-    def custom_draw(self, player: Player):
+    def custom_draw(self, player: Player, level: Level) -> None:
         # Camera is focussed on the player
         self.center_target_camera(player)
 
@@ -97,7 +98,8 @@ class CameraGroup(pygame.sprite.Group):
         #self.zoom_keyboard_control()
 
         # Should later be overwritten with our wished background
-        self.internal_surf.fill('#71ddee')
+        #self.internal_surf.fill('#71ddee')
+        self.internal_surf.blit(level.level_background, (0,0))
 
 		# ground 
         ground_offset = self.ground_rect.topleft - self.offset + self.internal_offset

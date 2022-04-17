@@ -55,12 +55,12 @@ class Goinghome:
             elif self.game_running:
                 # Start game with selected level
                 level = Level()
-                level.load_level(level_selection, self.window, self.camera_group)
+                level.load_level(level_selection, self.window)
                 # Check Player input
                 self.player.check_keyevents()
 
                 self.camera_group.update()
-                self.camera_group.custom_draw(self.player)
+                self.camera_group.custom_draw(self.player, level)
 
             #self.gamestate.setup_screen()
             #pygame.display.update()
