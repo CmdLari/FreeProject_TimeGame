@@ -23,6 +23,7 @@ class Goinghome:
         self.menu = Menu()
         # Initialize Game state
         self.game_running = False
+        self.level = Level()
         # Initialize camera_group
         self.camera_group = CameraGroup()
         # Initialize player
@@ -45,14 +46,14 @@ class Goinghome:
                 self.game_running, level_selection = self.menu.show_menu(self.window)
             elif self.game_running:
                 # Start game with selected level
-                level = Level()
-                level.load_level(level_selection, self.window)
+                
+                self.level.load_level(level_selection, self.window)
 
                 # Checks input events for player and camera
                 self.events.check_events(self.player, self.camera_group)
 
                 self.camera_group.update()
-                self.camera_group.custom_draw(self.player, level)
+                self.camera_group.custom_draw(self.player, self.level)
 
             # Updates screen
             pygame.display.flip()
