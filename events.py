@@ -15,6 +15,8 @@ class Events:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self.keydown_events(event, player, camera_group)
+
+            # FOR DEVELOPEMENT PURPOSES ONLY!!!1!!
             elif event.type == pygame.MOUSEWHEEL:
                 camera_group.zoom_scale += event.y * 0.03
 
