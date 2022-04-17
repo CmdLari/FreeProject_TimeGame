@@ -1,6 +1,5 @@
-from multiprocessing import Event
-from random import randint
 import pygame
+from random import randint
 from camera_group import CameraGroup
 from events import Events
 from level import Level

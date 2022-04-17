@@ -1,10 +1,7 @@
 from typing import Tuple
-from camera_group import CameraGroup
 from window import Window
 import pygame
 import sys
-
-from level import Level
 
 class Menu:
     '''Draws the menu'''
@@ -63,7 +60,7 @@ class Menu:
                 # New Game
                 if self.new_game_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
-                    # self.new_game(utility_saves)
+                    # Load level 1 when new game is clicked
                     level_selection = 1
                     # Set game state to running: Game running = True
                     return True, level_selection
@@ -71,9 +68,8 @@ class Menu:
                 # Continue    
                 if self.continue_rect.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.Sound.stop(self.menusound)
+                    # Read from last save file
                     level_selection = 2
-                    # self.continue_game(utility_saves)
-                    #self.level = 1
                     # Set game state to running: Game running = True
                     return True, level_selection
                 # Quit    
