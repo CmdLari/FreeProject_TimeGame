@@ -1,6 +1,54 @@
 # Going Home
 
-## Items
+## BUILD
+
+### **Main**
+Loops through the game
+
+### **Screen**
+Creates the game's window
+
+### **Menu**
+*Initiated in main*
+
+*returns to player*
+
+*returns to level*
+
+### **Portal**
+*intiated in main*
+
+*returns to level*
+
+Handles the portal
+
+* needs screen
+
+### **Player**
+*Initiated in main*
+
+Blits player
+
+handles keyboard input
+
+has inventory
+
+* needs screen
+
+### **level**
+*Initiated in main*
+
+Initializes lvls
+* needs screen
+
+* returns to player
+
+### **Level Nr**
+*Initiated in level*
+
+Draws and handles individual lvls
+* needs level
+* needs player
 
 ## Portal
 Prompts a message: *"This seems to lead me forwards and back to my time. Do I already want to enter? [Y/N]"* **Leads to next lvl** Upon being used creates a save file with current stats and next level as placement.

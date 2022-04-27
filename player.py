@@ -1,63 +1,40 @@
-import pygame
+# Imports
+from movement import Movement
+from animated_player import AnimatedPlayer
+from saves import Saves
+
+class Player:
+    """Defines the player"""
+    def __init__(self, screen):
+        """Initializes player"""
+        self.movement = Movement(screen)
+        self.playerimg = self.movement.playerimg
+        self.animated_player = AnimatedPlayer(screen, self.playerimg)
+        self.saves = Saves()
+
+        self.level = self.saves.read_from_save("level", "player.json")
+        self.health = self.saves.read_from_save("health", "player.json")
+        self.sanity = self.saves.read_from_save("sanity", "player.json")
+        self.rationality = self.saves.read_from_save("rationality", "player.json")
+        self.love = self.saves.read_from_save("love", "player.json")
+        self.Inv1 = self.saves.read_from_save("Inv1", "player.json")
+        self.Inv2 = self.saves.read_from_save("Inv2", "player.json")
+        self.Inv3 = self.saves.read_from_save("Inv3", "player.json")
+        self.Inv4 = self.saves.read_from_save("Inv4", "player.json")
+        self.Inv5 = self.saves.read_from_save("Inv5", "player.json")
+        self.Inv6 = self.saves.read_from_save("Inv6", "player.json")
+        self.Inv7 = self.saves.read_from_save("Inv7", "player.json")
+        self.Inv8 = self.saves.read_from_save("Inv8", "player.json")
+        self.Inv9 = self.saves.read_from_save("Inv9", "player.json")
+        self.Inv10 = self.saves.read_from_save("Inv10", "player.json")
 
 
-class Player(pygame.sprite.Sprite):
-    """ Represents the player. """
-
-    def __init__(self, pos, group) -> None:
-        """ Initializes player. 
+    def draw_player(self):
+        """Blits standart player to screen"""
+    
+        self.animated_player.update_player()
         
-        Args:
-            pos (tuple): Player position.
-            group (pygame.sprite.Group): Group to add player to.
-        """
-        super().__init__(group)
-        self.image = pygame.image.load("assets/_IMGS/player_up.png")
-        self.rect = self.image.get_rect(center=pos)
-        self.direction = pygame.math.Vector2()
-        self.speed = 100
+    def inventory(self):
+        """Creates and handles the inventory"""
+        self.inventory = []
 
-        self.name = "Player"
-        self.level = 1
-        self.health = 100
-        self.love = 0
-        self.rationality = 0
-        self.sanity = 0
-        self.inventory = {"Slot 1": "Empty", "Slot 2": "Empty", "Slot 3": "Empty", "Slot 4": "Empty", "Slot 5": "Empty", "Slot 6": "Empty", "Slot 7": "Empty", "Slot 8": "Empty", "Slot 9": "Empty", "Slot 10": "Empty"}
-
-    def input(self):
-        """ Gets player input. """
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
-            self.image = pygame.image.load("assets/_IMGS/player_up.png")
-            self.direction.y = -1
-        elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            self.image = pygame.image.load("assets/_IMGS/player_down.png")
-            self.direction.y = 1
-        else:
-            self.direction.y = 0
-
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.image = pygame.image.load("assets/_IMGS/player_right.png")
-            self.direction.x = 1
-        elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.image = pygame.image.load("assets/_IMGS/player_left.png")
-            self.direction.x = -1
-        else:
-            self.direction.x = 0
-
-
-    def update(self):
-        """ Updates the player, based on input. """
-        self.input()
-        self.rect.center += self.direction * self.speed
-
-    def level_up(self) -> None:
-        """ Increases player stats. """
-        self.level += 1
-        self.experience_to_next_level = int(self.experience_to_next_level * self.experience_to_next_level_multiplier)
-        self.health = self.max_health
-        self.damage += 1
-        self.defense += 1
-        self.speed += 1

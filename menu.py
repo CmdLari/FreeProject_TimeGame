@@ -1,91 +1,104 @@
-from typing import Tuple
-from window import Window
+# Imports
 import pygame
 import sys
 
+from saves import Saves
+
 class Menu:
-    """ Represents the menu. """
+    """Creates the menu"""
+    def __init__(self, screen):
+        """Initializes the menu"""
+        self.screen = screen
 
-    def __init__(self):
-        """Initialize the menu"""
+        # Initialize saving
+        self.saves = Saves()
 
-        # Assets Menu
-        self.menubackground = pygame.image.load("assets/_IMGS/_Menu/menu_background.png")
+        self.gamestate = False
+        self.menusound = pygame.mixer.Sound("_assets/MUS/goinghome_menu.mp3")
+        pygame.mixer.Sound.play(self.menusound, loops= -1)
 
-        # Mouse
-        self.mouse = pygame.image.load("assets/_IMGS/_Menu/menu_mouse.png")
-        
-        # -- Buttons
-        self.button_newgame = pygame.image.load("assets/_IMGS/_Menu/menu_button_new_game.png")
-        self.button_continue = pygame.image.load("assets/_IMGS/_Menu/menu_button_continue.png")
-        self.button_quit = pygame.image.load("assets/_IMGS/_Menu/menu_button_quit.png")  
-
-        # Music
-        self.menusound = pygame.mixer.Sound('assets/_MUS/Timegame_menu.mp3')
-        self.menusound.set_volume(0.1)
-    
-    def show_menu(self, window: Window) -> Tuple[bool, int]:
-        """ Shows the menu on the given window.
-
-        Args:
-            window: The window to draw the menu to
-
-        Returns:
-            A tuple containing the game state and the level selection
-        """
-        # Background
-        window.blit_img(self.menubackground, 0, 0)
+    def draw_menu(self):
+        # BG
+        menu_bg = pygame.image.load("_assets/IMGS/menu/menu_background.png")
+        self.screen.screen.blit(menu_bg, (0, 0))
 
         # Buttons
-        window.blit_img(self.button_newgame, 0, -self.button_continue.get_rect().height-10)
-        window.blit_img(self.button_continue, 0, 0)
-        window.blit_img(self.button_quit, 0, self.button_continue.get_rect().height+10)
+        # --New Game
+        new_game = pygame.image.load("_assets/IMGS/menu/menu_button_new_game.png")
+        new_game_rect = new_game.get_rect()
+        new_game_rect.center = self.screen.width/2 - new_game_rect.width/2, self.screen.height/2 - new_game_rect.height/2 - new_game_rect.height -20
+        self.new_game_nrect = new_game_rect
+        self.screen.screen.blit(new_game, new_game_rect.center)
 
-        self.new_game_rect = pygame.Rect(window.width/2 - self.button_newgame.get_rect().width/2, window.height/2 - self.button_newgame.get_rect().height/2 -self.button_continue.get_rect().height-10, self.button_newgame.get_rect().width, self.button_newgame.get_rect().height)
-        self.continue_rect = pygame.Rect(window.width/2 - self.button_continue.get_rect().width/2, window.height/2 - self.button_continue.get_rect().height/2, self.button_continue.get_rect().width, self.button_continue.get_rect().height)
-        self.quit_rect = pygame.Rect(window.width/2 - self.button_quit.get_rect().width/2, window.height/2 - self.button_quit.get_rect().height/2 +self.button_continue.get_rect().height+10, self.button_quit.get_rect().width, self.button_quit.get_rect().height) 
-        
+        # --Continue
+        cont = pygame.image.load("_assets/IMGS/menu/menu_button_continue.png")
+        cont_rect = cont.get_rect()
+        cont_rect.center = self.screen.width/2 - cont_rect.width/2, self.screen.height/2 - cont_rect.height/2
+        self.cont_nrect = cont_rect
+        self.screen.screen.blit(cont, cont_rect.center)
+
+        # --Quit
+        quit = pygame.image.load("_assets/IMGS/menu/menu_button_quit.png")
+        quit_rect = quit.get_rect()
+        quit_rect.center = self.screen.width/2 - quit_rect.width/2, self.screen.height/2 - quit_rect.height/2 + quit_rect.height +20
+        self.quit_nrect = quit_rect
+        self.screen.screen.blit(quit, quit_rect.center)
+
         # Mouse
-        window.screen.blit(self.mouse, pygame.mouse.get_pos())
+        mouse = pygame.image.load("_assets/IMGS/menu/menu_mouse.png")
+        mouse_rect = mouse.get_rect()
+        mouse_rect.center = pygame.mouse.get_pos()
+        self.screen.screen.blit(mouse, mouse_rect.center)
 
-        # Check for clicks
-        game_running, level_selection = self.menu_button_events(window)
-        return game_running, level_selection
+        self.check_mouseclicks()
 
-    def menu_button_events(self, window: Window) -> Tuple[bool, int]:
-        """ Checks for mouse clicks on the menu buttons.
+    def check_mouseclicks(self):
+        """Checks if buttons are clicked"""
 
-        Args:
-            window: The window to check for clicks on
-
-        Returns:
-            A tuple containing the game state and the level selection
-        """
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
-                sys.exit()            
-            elif event.type == pygame.KEYDOWN:
-                if pygame.K_ESCAPE:
-                    sys.exit()
-
+                sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                # New Game
-                if self.new_game_rect.collidepoint(pygame.mouse.get_pos()):
-                    pygame.mixer.Sound.stop(self.menusound)
-                    # Load level 1 when new game is clicked
-                    level_selection = 1
-                    # Set game state to running: Game running = True
-                    return True, level_selection
-
-                # Continue    
-                if self.continue_rect.collidepoint(pygame.mouse.get_pos()):
-                    pygame.mixer.Sound.stop(self.menusound)
-                    # Read from last save file
-                    level_selection = 2
-                    # Set game state to running: Game running = True
-                    return True, level_selection
-                # Quit    
-                if self.quit_rect.collidepoint(pygame.mouse.get_pos()):
+                if self.new_game_nrect.collidepoint(pygame.mouse.get_pos()):
+                    level = 1
+                    health = 20
+                    sanity = 20
+                    rationality = 0
+                    love = 0
+                    Inv1 = "-"
+                    Inv2 = "-"
+                    Inv3 = "-"
+                    Inv4 = "-"
+                    Inv5 = "-"
+                    Inv6 = "-"
+                    Inv7 = "-"
+                    Inv8 = "-"
+                    Inv9 = "-"
+                    Inv10 = "-"
+                    self.saves.write_to_save("level", level, "player.json")
+                    self.saves.write_to_save("health", health, "player.json")
+                    self.saves.write_to_save("sanity", sanity, "player.json")
+                    self.saves.write_to_save("rationality", rationality, "player.json")
+                    self.saves.write_to_save("love", love, "player.json")
+                    self.saves.write_to_save("Inv1", Inv1, "player.json")
+                    self.saves.write_to_save("Inv2", Inv2, "player.json")
+                    self.saves.write_to_save("Inv3", Inv3, "player.json")
+                    self.saves.write_to_save("Inv4", Inv4, "player.json")
+                    self.saves.write_to_save("Inv5", Inv5, "player.json")
+                    self.saves.write_to_save("Inv6", Inv6, "player.json")
+                    self.saves.write_to_save("Inv7", Inv7, "player.json")
+                    self.saves.write_to_save("Inv8", Inv8, "player.json")
+                    self.saves.write_to_save("Inv9", Inv9, "player.json")
+                    self.saves.write_to_save("Inv10", Inv10, "player.json")
+                    if self.saves.read_from_save("level", "player.json") == 1:
+                        self.gamestate = True
+                        return self.gamestate
+                elif self.cont_nrect.collidepoint(pygame.mouse.get_pos()):
+                    self.gamestate = True
+                    return self.gamestate
+                elif self.quit_nrect.collidepoint(pygame.mouse.get_pos()):
                     sys.exit()
-        return False, 0
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()
