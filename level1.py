@@ -21,7 +21,11 @@ class Level1:
 
         # Load images
         self.backgroundimg = pygame.image.load("_assets/IMGS/lvl1/lvl1_bg.jpg")
-        self.ship = pygame.image.load("_assets/IMGs/lvl1/ship.png")   
+        self.ship = pygame.image.load("_assets/IMGs/lvl1/ship.png") 
+        self.analyzer = pygame.image.load("_assets/IMGs/lvl1/item_analyzer.png")   
+        self.diary = pygame.image.load("_assets/IMGs/lvl1/item_diary.png")
+        self.vidlog = pygame.image.load("_assets/IMGs/lvl1/item_vidlog.png")      
+        self.translator = pygame.image.load("_assets/IMGs/lvl1/item_translator.png")             
         self.dino_a = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")   
         self.dino_b = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")        
         self.dino_c = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")
@@ -57,10 +61,34 @@ class Level1:
         self.screen.screen.blit(self.backgroundimg, self.backgroundrect)
 
         # Blit Ship to screen
-        msgs = ["This debris is all what remains of a vessel.","Did I arrive in this?", "Maybe I should look for any intact items!"]
-        self.sprite.draw_sprite(self.ship, mapx, mapy, 210, -200, msgs)
+        # --Spawns msg
+        msgs_ship = ["This debris is all what remains of a vessel.","Did I arrive in this?", "Maybe I should look for any intact items!"]
+        self.sprite.draw_sprite(self.ship, mapx, mapy, 374, -359, msgs_ship)
+
+        # Blit Items to screen
+        # --Analyzer
+        # ----Spawns msg, disappears into inventory, activates berries
+        msgs_analyzer = ["This item will help me find", "viable nourishment and avoid poisoning myself"]
+        self.sprite.draw_animated_sprite(self.analyzer, mapx, mapy, -86, -201, msgs_analyzer)
+
+        # --Diary
+        # ----Spawns msg, disappears into inventory, gives 10 to love
+        msgs_diary = ["This seems to be my old diary.", "There's something about a partner I have?", "I seem to miss them."]
+        self.sprite.draw_animated_sprite(self.diary, mapx, mapy, 2489, 913, msgs_diary)
+
+        # --Vidlog
+        # ----Spawns msg, disappears into inventory, gives 20 to love
+        msgs_vidlog = ["There are pictures and videos on here.", "This seems to be me and my partner.", "We look so happy..."]
+        self.sprite.draw_animated_sprite(self.vidlog, mapx, mapy, 2787, -1412, msgs_vidlog)        
+
+        # --Translator
+        # ----Spawns msg, disappears into inventory, gives 10 to rationality
+        msgs_translator = ["This little apparatus translates languages.", "It might come in handy yet!"]
+        self.sprite.draw_animated_sprite(self.translator, mapx, mapy, -2146, -1195, msgs_translator)          
 
         # Blit Dinos to screen
+        # --Walk across map
+        # --Hurt player upon collision and get displaced afterwards
         msgs_dino = ["This dinosaur seems aggressive!","I can't defend myself...", "I need to flee!"]
         self.sprite.draw_animated_sprite(self.dino_a, mapx, mapy, -3052, -1058, msgs_dino)
         self.sprite.draw_animated_sprite(self.dino_c, mapx, mapy, -878, -1541, msgs_dino)
