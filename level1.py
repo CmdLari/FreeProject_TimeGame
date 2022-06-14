@@ -21,14 +21,14 @@ class Level1:
 
         # Load images
         self.backgroundimg = pygame.image.load("_assets/IMGS/lvl1/lvl1_bg.jpg")
-        self.ship = pygame.image.load("_assets/IMGs/lvl1/ship.png") 
-        self.analyzer = pygame.image.load("_assets/IMGs/lvl1/item_analyzer.png")   
-        self.diary = pygame.image.load("_assets/IMGs/lvl1/item_diary.png")
-        self.vidlog = pygame.image.load("_assets/IMGs/lvl1/item_vidlog.png")      
-        self.translator = pygame.image.load("_assets/IMGs/lvl1/item_translator.png")             
-        self.dino_a = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")   
-        self.dino_b = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")        
-        self.dino_c = pygame.image.load("_assets/IMGs/lvl1/dinoa.png")
+        self.ship = pygame.image.load("_assets/IMGS/lvl1/ship.png")
+        self.analyzer = pygame.image.load("_assets/IMGS/lvl1/item_analyzer.png")
+        self.diary = pygame.image.load("_assets/IMGS/lvl1/item_diary.png")
+        self.vidlog = pygame.image.load("_assets/IMGS/lvl1/item_vidlog.png")
+        self.translator = pygame.image.load("_assets/IMGS/lvl1/item_translator.png")
+        self.dino_a = pygame.image.load("_assets/IMGS/lvl1/dinoa.png")
+        self.dino_b = pygame.image.load("_assets/IMGS/lvl1/dinoa.png")
+        self.dino_c = pygame.image.load("_assets/IMGS/lvl1/dinoa.png")
 
         # Describe player
         self.level = self.player.level
